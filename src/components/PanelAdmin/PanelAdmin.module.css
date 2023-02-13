@@ -1,0 +1,43 @@
+.panel__body {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 30px;
+}
+
+.panel__list__container {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: start;
+}
+
+.panel__list {
+     width: 100%;
+     max-height: 600px;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     overflow-y: scroll;
+}
+
+.panel__list__box {
+     background: var(--naranja) ;
+     color: white;
+     margin-right: 10px;
+     padding: 15px 10px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-radius: 10px;
+     text-align: start;
+}
+
+.panel__list__box p {
+     max-width: 170px;
+}
+
+.panel__icons {
+     display: flex;
+     gap: 15px;
+}
