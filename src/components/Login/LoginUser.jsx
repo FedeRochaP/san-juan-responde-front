@@ -5,17 +5,24 @@ import style from './Login.module.css'
 
 // Components
 import Header from '../Header/Header'
-
-// Image
-import logoCompleto from '../../assets/logoCompleto.svg'
+import Logos from '../Logos/Logos'
 
 export default function LoginUser() {
      return (
           <div className='view'>
                <Header />
                <div className='container'>
-                    <div className=''>
-                         <img src={logoCompleto} alt="" />
+                    <Logos />
+                    <div className={style.login__title}>
+                         <h2>Bienvenidos</h2>
+                         <p>Ingresa tu DNI y comenzemos con el juego </p>
+                    </div>
+                    <div className={style.login__inputs}>
+                         <div className={style.login__inputbox}>
+                              <input type="number" name="" id="" required />
+                              <span>Ingresa tu DNI sin puntos</span>
+                         </div>
+                         <button>INGRESAR</button>
                     </div>
                </div>
           </div>

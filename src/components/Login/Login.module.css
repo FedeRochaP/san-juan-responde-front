@@ -1,0 +1,62 @@
+.login__title {
+     color: var(--bordo);
+     max-width: 250px;
+     display: flex; flex-direction: column;
+     align-items: center;
+     gap: 15px;
+}
+
+.login__title h2 {
+     line-height: 30px;
+}
+
+.login__title p {
+     line-height: 20px;
+}
+
+.login__inputs {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 30px;
+}
+
+.login__inputbox {
+     position: relative;
+}
+
+.login__inputbox input {
+     font-family: brokman-light;
+     font-size: 20px;
+     width: 100%;
+     padding: 20px;
+     border: solid 1px black;
+     border-radius: 10px;
+}
+
+.login__inputbox span {
+     font-family: brokman-light;
+     padding: 21px 15px;
+     position: absolute;
+     font-size: 20px;
+     left: 0 ;
+     pointer-events: none;
+     transition: 0.4s;
+}
+
+.login__inputbox input:valid ~ span,
+.login__inputbox input:focus ~ span {
+     background: white;
+     transform: translateY(-25px) translateX(15px);
+     font-size: 14px;
+}
+
+.login__inputs button {
+     background: var(--gris);
+     color: white;
+     padding: 15px;
+     font-size: 16px;
+     border: 1px solid var(--gris);
+     border-radius: 10px;
+     box-shadow: 0px 4px 4px #00000040;
+}

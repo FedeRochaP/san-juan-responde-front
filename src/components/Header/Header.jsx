@@ -8,6 +8,6 @@ import lineaColores from '../../assets/Head/lineaColores.png'
 
 export default function Header() {
   return (
-      <img src={lineaColores} alt="" />
+      <img className={style.head__line} src={lineaColores} alt="" />
   )
 }

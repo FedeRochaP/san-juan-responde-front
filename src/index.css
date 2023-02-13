@@ -2,6 +2,21 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
+     font-family: brokman-bold;
+}
+
+@font-face {
+     font-family: brokman-bold;
+     src: url(../src/assets/fonts/BrokmanTrial-Bold.otf);
+}
+@font-face {
+     font-family: brokman-light;
+     src: url(../src/assets/fonts/BrokmanTrial-Light.otf);
+}
+
+:root {
+     --bordo: #9A2D56;
+     --gris: #79747E;
 }
 
 .view {
@@ -10,4 +25,22 @@
      flex-direction: column;
      align-items: center;
      gap: 30px;
+}
+
+.container {
+     width: 100%;
+     padding: 15px 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 30px;
+     text-align: center;
+}
+
+.logo__img {
+     width: 300px;
+}
+
+.logo__img img {
+     width: 100%;
 }
