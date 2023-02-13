@@ -47,8 +47,9 @@
 .login__inputbox input:valid ~ span,
 .login__inputbox input:focus ~ span {
      background: white;
-     transform: translateY(-25px) translateX(15px);
+     transform: translateY(-14px) translateX(15px);
      font-size: 14px;
+     padding: 5px 15px;
 }
 
 .login__inputs button {

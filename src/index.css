@@ -16,8 +16,13 @@
 
 :root {
      --bordo: #9A2D56;
+     --bordo-dark: #6D0029;
      --gris: #79747E;
      --naranja: #F19A00;
+     --naranja-dark: #E64D38;
+     --rojo: #C31000;
+     --verde: #039E00;
+     --celeste: #00B1E9;
 }
 
 .view {
@@ -28,7 +33,8 @@
      gap: 30px;
 }
 
-.container {
+.container,
+.container__user {
      width: 100%;
      max-width: 900px;
      padding: 15px 20px;
@@ -37,6 +43,11 @@
      align-items: center;
      gap: 30px;
      text-align: center;
+}
+
+.container__user {
+     padding: 15px 0 !important;
+     height: 80vh;
 }
 
 .logo__img {

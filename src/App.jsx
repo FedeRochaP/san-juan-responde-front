@@ -6,6 +6,8 @@ import './App.css'
 const LoginUser = lazy(() => import('./components/Login/LoginUser'))
 const LoginAdmin = lazy(() => import('./components/Login/LoginAdmin'))
 const PanelAdmin = lazy(() => import('./components/PanelAdmin/PanelAdmin'))
+const Questions = lazy(() => import('./components/Questions/Questions'))
+const Form = lazy(() => import('./components/Form/Form'))
 
 export default function App() {
   return (
@@ -18,6 +20,10 @@ export default function App() {
 
         {/* Admin */}
         <Route path="/panelAdmin" exact element={<PanelAdmin />} />
+
+        {/* User */}
+        <Route path="/questions" exact element={<Questions />} />
+        <Route path="/form" exact element={<Form />} />
 
       </Routes>
     </Router>

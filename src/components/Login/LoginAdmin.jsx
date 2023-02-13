@@ -19,7 +19,7 @@ export default function LoginAdmin() {
                     <div className={style.login__inputs}>
                          <div className={style.login__inputbox}>
                               <input type="number" name="" id="" required />
-                              <span>Usuario Admin</span>
+                              <span>Usuario Adm</span>
                          </div>
                          <div className={style.login__inputbox}>
                               <input type="password" required/>
