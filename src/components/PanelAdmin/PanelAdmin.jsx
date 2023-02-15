@@ -29,6 +29,55 @@ export default function PanelAdmin() {
                                         <Delete />
                                    </div>
                               </div>
+                              <div className={style.panel__list__box}>
+                                   <p>Nombre de la pregunta</p>
+                                   <div className={style.panel__icons}>
+                                        <Edit />
+                                        <Delete />
+                                   </div>
+                              </div>
+                              <div className={style.panel__list__box}>
+                                   <p>Nombre de la pregunta</p>
+                                   <div className={style.panel__icons}>
+                                        <Edit />
+                                        <Delete />
+                                   </div>
+                              </div>
+                              <div className={style.panel__list__box}>
+                                   <p>Nombre de la pregunta</p>
+                                   <div className={style.panel__icons}>
+                                        <Edit />
+                                        <Delete />
+                                   </div>
+                              </div>
+                              <div className={style.panel__list__box}>
+                                   <p>Nombre de la pregunta</p>
+                                   <div className={style.panel__icons}>
+                                        <Edit />
+                                        <Delete />
+                                   </div>
+                              </div>
+                              <div className={style.panel__list__box}>
+                                   <p>Nombre de la pregunta</p>
+                                   <div className={style.panel__icons}>
+                                        <Edit />
+                                        <Delete />
+                                   </div>
+                              </div>
+                              <div className={style.panel__list__box}>
+                                   <p>Nombre de la pregunta</p>
+                                   <div className={style.panel__icons}>
+                                        <Edit />
+                                        <Delete />
+                                   </div>
+                              </div>
+                              <div className={style.panel__list__box}>
+                                   <p>Nombre de la pregunta</p>
+                                   <div className={style.panel__icons}>
+                                        <Edit />
+                                        <Delete />
+                                   </div>
+                              </div>
                          </div>
                     </div>
                </div>

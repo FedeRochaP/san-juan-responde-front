@@ -22,7 +22,7 @@ export default function LoginUser() {
                               <input type="number" name="" id="" required />
                               <span>Ingresa tu DNI sin puntos</span>
                          </div>
-                         <button>INGRESAR</button>
+                         <button className='btn btn__gris'>INGRESAR</button>
                     </div>
                </div>
           </div>

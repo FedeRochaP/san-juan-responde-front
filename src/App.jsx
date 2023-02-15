@@ -16,10 +16,10 @@ export default function App() {
 
         {/* Login */}
         <Route path="/loginUser" exact element={<LoginUser />} />
-        <Route path="/loginAdmin" exact element={<LoginAdmin />} />
+        {/* <Route path="/loginAdmin" exact element={<LoginAdmin />} /> */}
 
         {/* Admin */}
-        <Route path="/panelAdmin" exact element={<PanelAdmin />} />
+        {/* <Route path="/panelAdmin" exact element={<PanelAdmin />} /> */}
 
         {/* User */}
         <Route path="/questions" exact element={<Questions />} />

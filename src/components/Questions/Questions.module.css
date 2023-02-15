@@ -87,14 +87,3 @@
      width: 100%;
      padding: 0 20px;
 }
-
-.questions__next button {
-     width: 100%;
-     background: var(--bordo);
-     color: white;
-     padding: 10px;
-     font-size: 16px;
-     border: 1px solid var(--bordo);
-     border-radius: 10px;
-     box-shadow: 0px 4px 4px #00000040;
-}
