@@ -23,7 +23,8 @@
      --rojo: #C31000;
      --verde: #039E00;
      --celeste: #00B1E9;
-     --rosa-dark: #E10050;
+     --rosa: #E10050;
+     --rosa-dark: #C70148;
 }
 
 .view {
@@ -68,9 +69,14 @@
      box-shadow: 0px 4px 4px #00000040;
 }
 
+.btn__rosa__dark {
+     background: var(--rosa-dark);
+     border: 1px solid var(--rosa-dark);
+}
+
 .btn__bordo {
-     background: var(--bordo);
-     border: 1px solid var(--bordo);
+     background: var(--bordo-dark);
+     border: 1px solid var(--bordo-dark);
 }
 
 .btn__gris {
