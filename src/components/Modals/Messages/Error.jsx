@@ -35,7 +35,7 @@ export default function Error() {
 
      return (
           <div style={{ width: "100%" }}>
-               <button onClick={handleOpen} className='btn__bordo'>Error test</button>
+               <button onClick={handleOpen} className='btn btn__bordo'>Error test</button>
                <Modal
                     open={open}
                     onClose={handleClose}
@@ -62,7 +62,7 @@ export default function Error() {
                                    <h2>Intento </h2>
                               </div>
                               <button
-                                   className='btn__bordo'
+                                   className='btn btn__bordo'
                               >
                                    CONTINUAR
                               </button>

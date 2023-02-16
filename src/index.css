@@ -75,6 +75,11 @@
 }
 
 .btn__bordo {
+     background: var(--bordo);
+     border: 1px solid var(--bordo);
+}
+
+.btn__bordo__dark {
      background: var(--bordo-dark);
      border: 1px solid var(--bordo-dark);
 }

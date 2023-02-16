@@ -13,10 +13,21 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-     gap: 40px;
+     gap: 30px;
      padding: 20px;
      border-radius: 10px;
      text-align: center;
+     position: relative;
+}
+
+.message__close {
+     background: #37474F;
+     color: white !important;
+     position: absolute;
+     font-size: 30px !important;
+     top: 10px;
+     left: 10px;
+     border-radius: 5px;
 }
 
 .message__icons {
@@ -42,6 +53,30 @@
 .message__icon__2 {
      right: 0;
      transform: scaleX(-1);
+}
+
+.message__title h2,
+.message__congrats__title h2 {
+     font-size: 35px;
+}
+
+.message__title h3, 
+.message__congrats__title h3 {
+     font-size: 30px;
+}
+
+.message__congrats__title {
+     color: var(--naranja-dark);
+}
+
+.message__attempts h2{
+     color: var(--naranja);
+     font-size: 30px;
+}
+
+.message__text p {
+     font-family: brokman-light;
+     font-size: 20px;
 }
 
 .message__correct {

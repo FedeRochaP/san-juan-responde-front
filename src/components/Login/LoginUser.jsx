@@ -6,6 +6,8 @@ import style from './Login.module.css'
 // Components
 import Header from '../Header/Header'
 import Logos from '../Logos/Logos'
+import Attepts from '../Modals/Messages/Attempts'
+import Congrats from '../Modals/Messages/Congrats'
 
 export default function LoginUser() {
      return (
@@ -24,6 +26,9 @@ export default function LoginUser() {
                          </div>
                          <button className='btn btn__gris'>INGRESAR</button>
                     </div>
+
+                    <Attepts />
+                    <Congrats />
                </div>
           </div>
      )

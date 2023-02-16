@@ -33,7 +33,7 @@ export default function Instructions() {
                          </div>
                          <div className={style.instructions__next}>
                               <img src={expansion} alt="Expansion Productiva" />
-                              <button className='btn btn__bordo'>JUGAR</button>
+                              <button className='btn btn__bordo__dark'>JUGAR</button>
                          </div>
                     </div>
                </div>
