@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 
 // Styles
 import style from './Login.module.css'
@@ -9,39 +9,18 @@ import Logos from '../Logos/Logos'
 import Attepts from '../Modals/Messages/Attempts'
 import Congrats from '../Modals/Messages/Congrats'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contex/auth'
 export default function LoginUser() {
      const [dni, setDni] = useState('')
-     const [response, setResponse] = useState({
-          isRegister: true
-     })
-
-
-     const handleLogin = async () => {
-          await axios.post(`http://192.168.100.162:8000/api/participante/consulta`, {
-              "dni": dni
-          }, {
-               method: 'POST',
-               // headers: {
-               //      "Authorization":
-               //           `Bearer ${import.meta.env.VITE_TOKEN}`,
-               // },
-               withCredentials: true,
-
-          })
-               .then(response => response.data)
-               .then(async (datos) => {
-                    if (datos?.status) {
-                         console.log(datos)
-                    }
-               })
-               .catch((err) => {
-                    console.log(err)
-               })
-     }
-     // const modalInfo= ()=> {
-     //      response.isRegister && <Attepts initial={true}/> 
-     // }   
-
+     const navigate = useNavigate()
+     const {handleLogin,respuesta} = useContext(AuthContext)
+     
+     useEffect(()=> {
+           if(respuesta?.status){
+                !respuesta?.isRegistered ? navigate('/form') : ''
+           }
+     },[respuesta?.isRegistered])
      return (
           <div className='view'>
                <Header />
@@ -56,13 +35,10 @@ export default function LoginUser() {
                               <input type="number" name="dni" value={dni} onChange={(e) => setDni(e.target.value)} required />
                               <span>Ingresa tu DNI sin puntos</span>
                          </div>
-                         <button className='btn btn__gris' onClick={handleLogin}>INGRESAR</button>
+                         <button className='btn btn__gris' onClick={()=> handleLogin({dni})}>INGRESAR</button>
                     </div>
-                    {/* {
-                              response.isRegister ? <Attepts initial={true} /> : ''
-                         }
-                    
-                    <Congrats /> */}
+
+                        {respuesta?.isRegistered ? <Attepts initial={true} intentos={respuesta?.quedan} /> : ''}
 
                </div>
           </div>

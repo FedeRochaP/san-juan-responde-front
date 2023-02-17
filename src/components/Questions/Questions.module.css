@@ -79,29 +79,7 @@
 
 }
 
-.questions__message {
-     width: 100%;
-     color: var(--bordo-dark);
-     padding: 0 20px;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     gap: 15px;
-}
 
-.questions__message h2 {
-     font-size: 30px;
-}
-
-.questions__message p {
-     max-width: 250px;
-     font-family: brokman-light;
-     font-size: 20px;
-}
-
-.questions__message h3 {
-     font-size: 20px;
-}
 
 /* Buttons */
 

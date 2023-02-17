@@ -14,6 +14,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 // Images
 import confeti from '../../../assets/confeti.svg'
 import happy from '../../../assets/happyFace.svg'
+import { useNavigate } from 'react-router-dom';
 
 const styleModal = {
      position: 'absolute',
@@ -27,15 +28,15 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Congrats() {
+export default function Congrats({path}) {
 
-     const [open, setOpen] = React.useState(false);
+     const [open, setOpen] = React.useState(true);
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
+     const navigate = useNavigate()
 
      return (
           <div style={{ width: "100%" }}>
-               <button onClick={handleOpen} className='btn btn__bordo'>Congrats test</button>
                <Modal
                     open={open}
                     onClose={handleClose}
@@ -66,6 +67,7 @@ export default function Congrats() {
                               </div>
                               <button
                                    className='btn btn__bordo'
+                                   onClick={()=> navigate(`/instructions`)}
                               >
                                    CONTINUAR
                               </button>

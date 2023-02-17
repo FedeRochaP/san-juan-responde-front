@@ -13,6 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 // Images
 import heart from '../../../assets/heart.svg'
 import sad from '../../../assets/sadFace.svg'
+import { useNavigate } from 'react-router-dom';
 
 const styleModal = {
      position: 'absolute',
@@ -26,9 +27,10 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Attepts({initial}) {
+export default function Attepts({initial, intentos}) {
 
      const [open, setOpen] = React.useState(initial);
+     const navigate = useNavigate()
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
 
@@ -53,13 +55,14 @@ export default function Attepts({initial}) {
                                    <img src={heart} alt="" />
                               </div>
                               <div className={style.message__title}>
-                                   <h2>Aun tienes 3 intentos para ganar el juego</h2>
+                                   <h2>Aun tienes {intentos} intentos para ganar el juego</h2>
                               </div>
                               <div className={style.message__text}>
                                    <p>Vamos a seguir jugando</p>
                               </div>
                               <button
                                    className='btn btn__bordo'
+                                   onClick={()=> navigate('/instructions')}
                               >
                                    JUGAR
                               </button>

@@ -1,14 +1,17 @@
 import React, { lazy, Suspense, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css'
-
+import Form from './components/Form/Form';
+import Instructions from './components/Instructions/Instructions';
+import LoginUser from './components/Login/LoginUser';
+import Questions from './components/Questions/Questions'
 // Components
-const LoginUser = lazy(() => import('./components/Login/LoginUser'))
-const Instructions = lazy(() => import('./components/Instructions/Instructions'))
-// const LoginAdmin = lazy(() => import('./components/Login/LoginAdmin'))
-// const PanelAdmin = lazy(() => import('./components/PanelAdmin/PanelAdmin'))
-const Questions = lazy(() => import('./components/Questions/Questions'))
-const Form = lazy(() => import('./components/Form/Form'))
+// const LoginUser = lazy(() => import('./components/Login/LoginUser'))
+// const Instructions = lazy(() => import('./components/Instructions/Instructions'))
+// // const LoginAdmin = lazy(() => import('./components/Login/LoginAdmin'))
+// // const PanelAdmin = lazy(() => import('./components/PanelAdmin/PanelAdmin'))
+// const Questions = lazy(() => import('./components/Questions/Questions'))
+// const Form = lazy(() => import('./components/Form/Form'))
 
 export default function App() {
   return (

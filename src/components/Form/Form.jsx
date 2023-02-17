@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 
 // Styles
 import style from './Form.module.css'
@@ -11,9 +11,71 @@ import Congrats from '../Modals/Messages/Congrats'
 import Error from '../Modals/Messages/Error'
 // Images
 import expansion from '../../assets/expansionProductiva.svg'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contex/auth'
+const departamento = [
+     { id: 1, nombre: 'Rawson' },
+     { id: 2, nombre: 'Capital' },
+     { id: 3, nombre: 'Chimbas' },
+     { id: 4, nombre: 'Rivadavia' },
+     { id: 5, nombre: 'Santa Lucia' },
+     { id: 6, nombre: 'Pocito' },
+     { id: 7, nombre: 'Caucete' },
+     { id: 8, nombre: 'Jachal' },
+     { id: 9, nombre: 'Albardon' },
+     { id: 10, nombre: 'Sarmiento' },
+     { id: 11, nombre: 'Angaco' },
+     { id: 12, nombre: '25 de Mayo' },
+     { id: 13, nombre: 'San Martin' },
+     { id: 14, nombre: 'Calingaste' },
+     { id: 15, nombre: '9 de Julio' },
+     { id: 16, nombre: 'Valle Fertil' },
+     { id: 17, nombre: 'Iglesia' },
+     { id: 18, nombre: 'Ullum' },
+     { id: 19, nombre: 'Zonda' },
 
+]
 export default function Form() {
+     const [form, setForm] = useState()
+     const navigate= useNavigate()
+     const {getQuestions,questions} = useContext(AuthContext)
 
+     const handleChange=(e)=> {
+          const {name,value} = e.target
+
+          setForm(prevState => {
+               return {
+                    ...prevState,
+                    [name]:value
+               }
+          })
+     }
+     const handleSubmitForm = async()=> {
+          await axios.post(`http://localhost:8000/api/participante`, {
+               "nombre":form.nombre,
+               "apellido":form.apellido,
+               "telefono":form.telefono,
+               "dni":form.dni,
+               "departamento_id": form.departamento_id
+           }, {
+                method: 'POST',
+                withCredentials: true,
+ 
+           })
+                .then(response => response.data)
+                .then(async (datos) => {
+                     if (datos?.status) {
+                         // getQuestions()
+                         // navigate('/questions')
+                         
+                     }
+                     setForm()
+                })
+                .catch((err) => {
+                     console.log(err)
+                })
+     }
      return (
           <div className='view'>
                <Header />
@@ -25,27 +87,37 @@ export default function Form() {
                               </div>
                               <div className={style.form__inputs}>
                                    <div className={style.form__inputbox}>
-                                        <input type="text" required />
+                                        <input type="text" onChange={handleChange} name='nombre' required />
                                         <span>Ingresa tu nombre</span>
                                    </div>
                                    <div className={style.form__inputbox}>
-                                        <input type="text" required />
+                                        <input type="text" onChange={handleChange} name='apellido' required />
                                         <span>Ingresa tu apellido</span>
                                    </div>
                                    <div className={style.form__inputbox}>
-                                        <input type="number" required />
+                                        <input type="number" onChange={handleChange} name='dni' required />
+                                        <span>Ingresa tu DNI</span>
+                                   </div>
+                                   <div className={style.form__inputbox}>
+                                        <input type="number" onChange={handleChange} name='telefono' required />
                                         <span>Ingresa tu celular</span>
                                    </div>
                                    <div className={style.form__inputbox}>
-                                        <select name="" id="">
+                                        <select onChange={handleChange} name="departamento_id" id="">
                                              <option value="0" disabled selected>Selecciona tu departamento</option>
+                                             {
+                                                  departamento.map(item => (
+                                                       <option key={item.id} value={item.id} >{item.nombre}</option>
+
+                                                  ))
+                                             }
                                         </select>
                                    </div>
                               </div>
                          </div>
                          <div className={style.form__btn}>
                               <img src={expansion} alt="" />
-                              <button className='btn btn__gris'>GUARDAR</button>
+                              <button className='btn btn__gris' onClick={handleSubmitForm}>GUARDAR</button>
                          </div>
                     </div>
 
