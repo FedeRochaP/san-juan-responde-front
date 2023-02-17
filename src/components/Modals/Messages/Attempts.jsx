@@ -26,15 +26,15 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Attepts() {
+export default function Attepts({initial}) {
 
-     const [open, setOpen] = React.useState(false);
+     const [open, setOpen] = React.useState(initial);
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
 
      return (
           <div style={{ width: "100%" }}>
-               <button onClick={handleOpen} className='btn btn__bordo'>Intentos test</button>
+               {/* <button onClick={handleOpen} className='btn btn__bordo'>Intentos test</button> */}
                <Modal
                     open={open}
                     onClose={handleClose}

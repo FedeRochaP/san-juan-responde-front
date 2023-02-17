@@ -67,6 +67,7 @@
      font-size: 16px;
      border-radius: 10px;
      box-shadow: 0px 4px 4px #00000040;
+     cursor: pointer;
 }
 
 .btn__rosa__dark {
