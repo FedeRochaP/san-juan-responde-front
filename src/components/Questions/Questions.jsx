@@ -77,19 +77,19 @@ export default function Questions() {
      //      getQuestions()
      // },[])
      // console.log(questions)
+     const nextQuestios = ()=> {
+               if (preguntaActual === array.length - 1) {
+                    setIsFinished(true)
+               } else{
+                    setPreguntaActual(preguntaActual + 1)
+                    setError(null)
+               }
+     }
      const handleQuestions = (isCorrect) => {
           if (isCorrect) setPuntuacion(puntuacion + 1)
 
           isCorrect ? setError(false) : setError(true)
-          
-          setTimeout(() => {
-               if (preguntaActual === array.length - 1) {
-                    setIsFinished(true)
-               } else if (isCorrect) {
-                    setPreguntaActual(preguntaActual + 1)
-                    setError(null)
-               }
-          }, 2000);
+          !isCorrect && setLife(life - 1)
      }
      
      if(isFinished){
@@ -158,7 +158,9 @@ export default function Questions() {
                                         <p>{life}</p>
                                    </div>
                               </div>
-                              <button className='btn btn__gris'>SIGUIENTE</button>
+                              {
+                              error !== null &&  <button onClick={nextQuestios} className='btn btn__gris'>SIGUIENTE</button>
+                              }
                          </div>
                     </div>
                </div>

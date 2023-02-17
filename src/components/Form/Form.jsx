@@ -67,8 +67,7 @@ export default function Form() {
                 .then(async (datos) => {
                      if (datos?.status) {
                          // getQuestions()
-                         // navigate('/questions')
-                         
+                         navigate('/instructions')
                      }
                      setForm()
                 })
