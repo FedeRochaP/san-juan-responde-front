@@ -120,7 +120,7 @@ export default function Questions() {
                               <div className={style.questions__list}>
                                    {
                                         array?.[preguntaActual].opciones.map((item) => (
-                                             <button disabled={areDisabled} key={item.id} onClick={(e) => handleQuestions(item.isCorrect)} className='btn btn__rosa__dark'>{item.opci}</button>
+                                             <button disabled={!item.isCorrect && error != null} key={item.id} onClick={(e) => handleQuestions(item.isCorrect)} className='btn btn__rosa__dark'>{item.opci}</button>
                                         ))
                                    }
 
