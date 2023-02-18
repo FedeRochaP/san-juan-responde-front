@@ -27,7 +27,7 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Attepts({initial, intentos}) {
+export default function Ups({initial, intentos}) {
 
      const [open, setOpen] = React.useState(initial);
      const navigate = useNavigate()
@@ -44,28 +44,25 @@ export default function Attepts({initial, intentos}) {
                     aria-describedby="modal-modal-description"
                >
                     <Box sx={styleModal}>
-
                          <div
                               className={style.message__body}
                          >
                               <CloseIcon className={style.message__close} onClick={handleClose} />
                               <div className={style.message__icons}>
-                                   <img src={heart} alt="" />
+                                   <img src={sad} alt="" />
                               </div>
                               <div className={style.message__title}>
-                                   <h2>Aun tienes {intentos} intentos para ganar el juego</h2>
+                                   <h2>¡Ups!</h2>
                               </div>
                               <div className={style.message__text}>
-                                   <p>Vamos a seguir jugando</p>
+                                   <p>Ya no te quedan intentos. Próximamente tendrás mas novedades.</p>
                               </div>
                               <button
                                    className='btn btn__bordo'
-                                   onClick={()=> navigate('/instructions')}
                               >
-                                   JUGAR
+                                   CERRAR
                               </button>
                          </div>
-
                     </Box>
                </Modal>
           </div>

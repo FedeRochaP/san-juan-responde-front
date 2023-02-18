@@ -10,7 +10,7 @@ import Logos from '../Logos/Logos'
 import Congrats from '../Modals/Messages/Congrats'
 import Error from '../Modals/Messages/Error'
 // Images
-import expansion from '../../assets/expansionProductiva.svg'
+import expansion from '../../assets/expansionProductiva.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contex/auth'

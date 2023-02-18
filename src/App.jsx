@@ -19,7 +19,7 @@ export default function App() {
       <Routes>
 
         {/* Login */}
-        <Route path="/loginUser" exact element={<LoginUser />} />
+        <Route path="/" exact element={<LoginUser />} />
         <Route path="/instructions" exact element={<Instructions />} />
         {/* <Route path="/loginAdmin" exact element={<LoginAdmin />} /> */}
 
