@@ -27,7 +27,7 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Attepts({initial, intentos}) {
+export default function Attepts({ initial, intentos }) {
 
      const [open, setOpen] = React.useState(initial);
      const navigate = useNavigate()
@@ -46,49 +46,55 @@ export default function Attepts({initial, intentos}) {
                     <Box sx={styleModal}>
 
                          {/* Cuando todavia te quedan intentos */}
+                         {
+                              intentos > 0 ?
+                                   (
+                                        <div
+                                             className={style.message__body}
+                                        >
+                                             <CloseIcon className={style.message__close} onClick={handleClose} />
+                                             <div className={style.message__icons}>
+                                                  <img src={heart} alt="" />
+                                             </div>
+                                             <div className={style.message__title}>
+                                                  <h2>Aun tienes {intentos} intentos para ganar el juego</h2>
+                                             </div>
+                                             <div className={style.message__text}>
+                                                  <p>Vamos a seguir jugando</p>
+                                             </div>
+                                             <button
+                                                  className='btn btn__bordo'
+                                                  onClick={() => navigate('/instructions')}
+                                             >
+                                                  JUGAR
+                                             </button>
+                                        </div>) :
+                                   (
+                                        <div
+                                             className={style.message__body}
+                                        >
+                                             <CloseIcon className={style.message__close} onClick={handleClose} />
+                                             <div className={style.message__icons}>
+                                                  <img src={sad} alt="" />
+                                             </div>
+                                             <div className={style.message__title}>
+                                                  <h2>¡Ups!</h2>
+                                             </div>
+                                             <div className={style.message__text}>
+                                                  <p>Ya no te quedan intentos. Próximamente tendrás mas novedades.</p>
+                                             </div>
+                                             <button
+                                                  className='btn btn__bordo'
+                                             >
+                                                  CERRAR
+                                             </button>
+                                        </div>
+                                   )
+                         }
 
-                         <div
-                              className={style.message__body}
-                         >
-                              <CloseIcon className={style.message__close} onClick={handleClose} />
-                              <div className={style.message__icons}>
-                                   <img src={heart} alt="" />
-                              </div>
-                              <div className={style.message__title}>
-                                   <h2>Aun tienes {intentos} intentos para ganar el juego</h2>
-                              </div>
-                              <div className={style.message__text}>
-                                   <p>Vamos a seguir jugando</p>
-                              </div>
-                              <button
-                                   className='btn btn__bordo'
-                                   onClick={()=> navigate('/instructions')}
-                              >
-                                   JUGAR
-                              </button>
-                         </div>
 
-                         {/* Cuando ya no te quedan intentos */}
 
-                         {/* <div
-                              className={style.message__body}
-                         >
-                              <CloseIcon className={style.message__close} onClick={handleClose} />
-                              <div className={style.message__icons}>
-                                   <img src={sad} alt="" />
-                              </div>
-                              <div className={style.message__title}>
-                                   <h2>¡Ups!</h2>
-                              </div>
-                              <div className={style.message__text}>
-                                   <p>Ya no te quedan intentos. Próximamente tendrás mas novedades.</p>
-                              </div>
-                              <button
-                                   className='btn btn__bordo'
-                              >
-                                   CERRAR
-                              </button>
-                         </div> */}
+
                     </Box>
                </Modal>
           </div>

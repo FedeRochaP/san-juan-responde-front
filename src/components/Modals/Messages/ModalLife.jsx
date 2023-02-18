@@ -9,12 +9,13 @@ import Modal from '@mui/material/Modal';
 
 // Material Icons
 import CloseIcon from '@mui/icons-material/Close';
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 // Images
 import confeti from '../../../assets/confeti.svg'
-import happy from '../../../assets/happyFace.svg'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contex/auth';
 
 const styleModal = {
      position: 'absolute',
@@ -28,15 +29,16 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Congrats({intentos}) {
+export default function ModalLife({intentos}) {
 
      const [open, setOpen] = React.useState(true);
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
-     const navigate = useNavigate()
-
+    
+    const navigate = useNavigate()
      return (
           <div style={{ width: "100%" }}>
+               <button onClick={handleOpen} className='btn btn__bordo'>Error test</button>
                <Modal
                     open={open}
                     onClose={handleClose}
@@ -48,26 +50,23 @@ export default function Congrats({intentos}) {
                               className={style.message__body}
                          >
                               <div className={style.message__icons}>
-                                   <div className={style.message__icon__1}>
-                                        <img src={confeti} alt="" />
-                                   </div>
-                                   <img src={happy} alt="" />
-                                   <div className={style.message__icon__2}>
-                                        <img src={confeti} alt="" />
-                                   </div>
+                                   <SentimentVeryDissatisfiedIcon />
                               </div>
-                              <div className={style.message__congrats__title}>
-                                   <h2>¡Felicitaciones!</h2>
-                                   <h3>¡Ganaste!</h3>
-                                   <br />
-                                   <h4>Ya formas parte del sorteo </h4>
+                              <div className={style.message__title}>
+                                   <h2>¡UPS!</h2>
                               </div>
-                              <div className={style.message__attempts}>
-                                   <h2>Intentos  {intentos}/5</h2>
+                              <h4>Fallaste, pero puedes intentarlo nuevamente </h4>
+                              <div className={style.message__correct}>
+                                   <p>La respuesta correcta es:</p>
+                                   <h3></h3>
+                              </div>
+                              <div className={style.message__lives}>
+                                   <FavoriteIcon />
+                                   <h2>Intentos {intentos}</h2>
                               </div>
                               <button
                                    className='btn btn__bordo'
-                                   onClick={()=> navigate(`/instructions`)}
+                                   onClick={()=> navigate('/instructions')}
                               >
                                    CONTINUAR
                               </button>

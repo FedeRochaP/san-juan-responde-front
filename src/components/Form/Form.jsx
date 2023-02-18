@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 // Styles
 import style from './Form.module.css'
@@ -10,6 +10,8 @@ import Logos from '../Logos/Logos'
 import Congrats from '../Modals/Messages/Congrats'
 import Error from '../Modals/Messages/Error'
 // Images
+import swal from 'sweetalert';
+
 import expansion from '../../assets/expansionProductiva.svg'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -36,45 +38,63 @@ const departamento = [
      { id: 19, nombre: 'Zonda' },
 
 ]
+const mostrarAlerta = (mensaje) => {
+     swal({
+         title: "Confirmacion! ",
+         text: mensaje,
+         icon: "success",
+         button: "Aceptar",
+         timer: "2000",
+     })
+ }
 export default function Form() {
      const [form, setForm] = useState()
-     const navigate= useNavigate()
-     const {getQuestions,questions} = useContext(AuthContext)
+     const navigate = useNavigate()
+     const [use,setUse] = useState(false)
+     const { getQuestionsForm ,setJwt,setUser} = useContext(AuthContext)
 
-     const handleChange=(e)=> {
-          const {name,value} = e.target
+     const handleChange = (e) => {
+          const { name, value } = e.target
 
           setForm(prevState => {
                return {
                     ...prevState,
-                    [name]:value
+                    [name]: value
                }
           })
      }
-     const handleSubmitForm = async()=> {
+     const handleSubmitForm = async () => {
           await axios.post(`http://localhost:8000/api/participante`, {
-               "nombre":form.nombre,
-               "apellido":form.apellido,
-               "telefono":form.telefono,
-               "dni":form.dni,
+               "nombre": form.nombre,
+               "apellido": form.apellido,
+               "telefono": form.telefono,
+               "dni": form.dni,
                "departamento_id": form.departamento_id
-           }, {
-                method: 'POST',
-                withCredentials: true,
- 
-           })
-                .then(response => response.data)
-                .then(async (datos) => {
-                     if (datos?.status) {
-                         // getQuestions()
+          }, {
+               method: 'POST',
+               withCredentials: true,
+
+          })
+               .then(response => response.data)
+               .then(async (datos) => {
+                    if (datos?.status) {
+                         mostrarAlerta(datos.message)
+                         setForm()
+                         setJwt(datos.token)
+                         setUser(datos.model.dni)
                          navigate('/instructions')
-                     }
-                     setForm()
-                })
-                .catch((err) => {
-                     console.log(err)
-                })
+                    }
+               })
+               .catch((err) => {
+                    console.log(err)
+               })
      }
+
+
+
+    
+     
+      
      return (
           <div className='view'>
                <Header />

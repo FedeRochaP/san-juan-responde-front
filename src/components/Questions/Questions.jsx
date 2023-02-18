@@ -18,53 +18,8 @@ import joker from '../../assets/joker.svg'
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contex/auth';
 import Congrats from '../Modals/Messages/Congrats';
-const array = [
-     {
-          id: 1,
-          titulo: 'quien es dybala?',
-          opciones: [
-               { opci: 'jugador', isCorrect: true },
-               { opci: 'tenista', isCorrect: false },
-               { opci: 'basquet', isCorrect: false },
-          ]
-     },
-     {
-          id: 2,
-          titulo: 'quien es messi?',
-          opciones: [
-               { opci: 'jugador', isCorrect: true },
-               { opci: 'tenista', isCorrect: false },
-               { opci: 'basquet', isCorrect: false },
-          ]
-     },
-     {
-          id: 3,
-          titulo: 'quien es maradona?',
-          opciones: [
-               { opci: 'jugador', isCorrect: true },
-               { opci: 'tenista', isCorrect: false },
-               { opci: 'basquet', isCorrect: false },
-          ]
-     },
-     {
-          id: 4,
-          titulo: 'quien es dybala?',
-          opciones: [
-               { opci: 'jugador', isCorrect: true },
-               { opci: 'tenista', isCorrect: false },
-               { opci: 'basquet', isCorrect: false },
-          ]
-     },
-     {
-          id: 5,
-          titulo: 'donde jugo messi de chiquito?',
-          opciones: [
-               { opci: 'Newells ', isCorrect: true },
-               { opci: 'Boca', isCorrect: false },
-               { opci: 'San martin', isCorrect: false },
-          ]
-     }
-]
+import ModalLife from '../Modals/Messages/modalLife';
+
 export default function Questions() {
      const [preguntaActual, setPreguntaActual] = useState(0)
      const [puntuacion, setPuntuacion] = useState(0)
@@ -72,29 +27,50 @@ export default function Questions() {
      const [life, setLife] = useState(3)
      const [error, setError] = useState(null)
      const [areDisabled,setAreDisabled] = useState(false)
-     const { getQuestions, questions } = useContext(AuthContext)
-     // useEffect(()=> {
-     //      getQuestions()
-     // },[])
-     // console.log(questions)
+     const { getQuestions, questions,setQuestions , postQuestions ,respuesta} = useContext(AuthContext)
+     
+
+     useEffect(()=> {
+          getQuestions()
+     },[])
      const nextQuestios = ()=> {
-               if (preguntaActual === array.length - 1) {
+               if (preguntaActual === questions?.preguntas - 1) {
                     setIsFinished(true)
+                    setQuestions()
+
                } else{
                     setPreguntaActual(preguntaActual + 1)
                     setError(null)
                }
      }
-     const handleQuestions = (isCorrect) => {
-          if (isCorrect) setPuntuacion(puntuacion + 1)
-
-          isCorrect ? setError(false) : setError(true)
-          !isCorrect && setLife(life - 1)
-     }
      
+     const handleQuestions = (isCorrect,e) => {
+         
+          if(isCorrect === 'true'){
+               setError(false)
+               setPuntuacion(puntuacion + 1)
+               if(puntuacion + 1 === 3){
+                    setIsFinished(true)
+                    setQuestions()
+                    postQuestions()
+               }
+          }else{
+               setError(true)
+          }
+          isCorrect === 'false' && setLife(life - 1)
+     }
+     const handleJoker = ()=> {
+          const questionsArray = {...questions}
+          const valor =  questions?.preguntas[preguntaActual]?.opciones?.findIndex(item=> {
+              return  item.isCorrect === 'false'
+          })
+          questionsArray?.preguntas[preguntaActual]?.opciones?.splice(valor,1)
+          setQuestions(questionsArray)
+          
+     }
      if(isFinished){
           return (
-          <Congrats path='questions'/>
+          <Congrats intentos={questions?.quedan}/>
           )
      }
      return (
@@ -105,7 +81,7 @@ export default function Questions() {
                          <div className={style.questions__number}>
                               <h3>Pregunta</h3>
                               <div className={style.questions__number__box}>
-                                   <h2>{preguntaActual + 1} de {array.length}</h2>
+                                   <h2>{preguntaActual + 1} de {questions?.preguntas?.length}</h2>
                               </div>
                          </div>
                          <div className={style.questions__section}>
@@ -114,18 +90,19 @@ export default function Questions() {
                                         <div className={style.questions__sign}>
                                              <img src={signo} alt="" />
                                         </div>
-                                        <h3>{array[preguntaActual].titulo}</h3>
+                                        <h3>{questions?.preguntas[preguntaActual]?.pregunta}</h3>
                                    </div>
                               </div>
                               <div className={style.questions__list}>
                                    {
-                                        array?.[preguntaActual].opciones.map((item) => (
-                                             <button disabled={!item.isCorrect && error != null} key={item.id} onClick={(e) => handleQuestions(item.isCorrect)} className='btn btn__rosa__dark'>{item.opci}</button>
+                                        questions?.preguntas[preguntaActual]?.opciones.map((item,index) => (
+                                             <button disabled={!item.isCorrect && error != null} key={index} onClick={(e) => handleQuestions(item.isCorrect,e)} className='btn btn__rosa__dark'>{item.opciones}</button>
                                         ))
                                    }
 
                               </div>
                          </div>
+
                          {
                               error === false && (
                                    <div className="questions__message">
@@ -139,21 +116,20 @@ export default function Questions() {
                                    <>
                                    <div className="questions__message">
                                         <h2>¡Fallaste!</h2>
-                                        <p>la respuesta correcta es:</p>
-                                        <h3>Respuesta correcta</h3>
+                                        <p>Oprime siguiente y continua jugando</p>
                                    </div>
                                    
                                    </>
                               )
 
                          }
-
-
+                         {life === 0 && <ModalLife intentos={questions.quedan}/> }
                          <div className={style.questions__next}>
-                              <div className={style.questions__btns}>
-                                   <div className={style.questions__joker}>
+                              <div  className={style.questions__btns}>
+                                   {questions?.preguntas[preguntaActual].opciones?.length === 3 && <div  onClick={handleJoker} className={style.questions__joker}>
                                         <img src={joker} alt="" />
-                                   </div>
+                                   </div> }
+                                   
                                    <div className={style.questions__heart}>
                                         <p>{life}</p>
                                    </div>

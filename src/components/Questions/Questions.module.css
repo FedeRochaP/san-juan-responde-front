@@ -99,6 +99,9 @@
      justify-content: space-between;
      gap: 10px;
 }
+.questions__btns img {
+    cursor: pointer;
+}
 
 .questions__heart {
      width: 50px;

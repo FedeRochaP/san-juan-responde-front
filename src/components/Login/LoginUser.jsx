@@ -11,6 +11,8 @@ import Congrats from '../Modals/Messages/Congrats'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contex/auth'
+
+
 export default function LoginUser() {
      const [dni, setDni] = useState('')
      const navigate = useNavigate()
@@ -21,6 +23,15 @@ export default function LoginUser() {
                 !respuesta?.isRegistered ? navigate('/form') : ''
            }
      },[respuesta?.isRegistered])
+
+     const handleSubmit = async()=> {
+          try {
+              await handleLogin({dni})
+          } catch (err) {
+               console.log(err.response.data)
+          }
+     }
+
      return (
           <div className='view'>
                <Header />
@@ -35,10 +46,10 @@ export default function LoginUser() {
                               <input type="number" name="dni" value={dni} onChange={(e) => setDni(e.target.value)} required />
                               <span>Ingresa tu DNI sin puntos</span>
                          </div>
-                         <button className='btn btn__gris' onClick={()=> handleLogin({dni})}>INGRESAR</button>
+                         <button className='btn btn__gris' onClick={handleSubmit}>INGRESAR</button>
                     </div>
 
-                        {respuesta?.isRegistered ? <Attepts initial={true} intentos={respuesta?.quedan} /> : ''}
+                        {respuesta?.isRegistered && <Attepts initial={true} intentos={respuesta?.quedan} />}
 
                </div>
           </div>
