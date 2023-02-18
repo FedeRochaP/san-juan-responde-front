@@ -15,6 +15,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 // Images
 import signo from '../../assets/signo.svg'
 import joker from '../../assets/joker.svg'
+import jokerDisabled from '../../assets/jokerDisabled.svg'
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contex/auth';
 import Congrats from '../Modals/Messages/Congrats';
@@ -128,6 +129,7 @@ export default function Questions() {
                               <div  className={style.questions__btns}>
                                    {questions?.preguntas[preguntaActual].opciones?.length === 3 && <div  onClick={handleJoker} className={style.questions__joker}>
                                         <img src={joker} alt="" />
+                                        
                                    </div> }
                                    
                                    <div className={style.questions__heart}>

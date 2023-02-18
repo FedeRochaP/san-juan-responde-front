@@ -60,6 +60,10 @@
      width: 100%;
 }
 
+.logo__exp {
+     width: 200px !important;
+}
+
 .btn {
      width: 100%;
      color: white;
@@ -124,6 +128,6 @@
 }
 @media screen and (max-height: 670px) {
      .container__user {
-          height: 90vh;
+          height: 100vh;
      }
 }

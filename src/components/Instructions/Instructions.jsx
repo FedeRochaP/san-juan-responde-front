@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contex/auth'
+import axios from 'axios'
 
 // Styles
 import style from './Instructions.module.css'
@@ -8,10 +11,8 @@ import Header from '../Header/Header'
 import Logos from '../Logos/Logos'
 
 // Images
-import expansion from '../../assets/expansionProductiva.svg'
-import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../contex/auth'
-import axios from 'axios'
+import expansion from '../../assets/expansionProductiva.png'
+
 export default function Instructions() {
      const navigate = useNavigate()
      const {getQuestions} = useContext(AuthContext)
@@ -42,7 +43,7 @@ export default function Instructions() {
                               </div>
                          </div>
                          <div className={style.instructions__next}>
-                              <img src={expansion} alt="Expansion Productiva" />
+                              <img src={expansion} className="logo__exp" alt="Expansion Productrivia" />
                               <button onClick={handleQuestions} className='btn btn__bordo__dark'>JUGAR</button>
                          </div>
                     </div>
