@@ -14,7 +14,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import heart from '../../../assets/heart.svg'
 import sad from '../../../assets/sadFace.svg'
 import { useNavigate } from 'react-router-dom';
-
 const styleModal = {
      position: 'absolute',
      top: '50%',
@@ -45,7 +44,6 @@ export default function Attepts({ initial, intentos }) {
                >
                     <Box sx={styleModal}>
 
-<<<<<<< HEAD
                          {/* Cuando todavia te quedan intentos */}
                          {
                               intentos > 0 ?
@@ -93,32 +91,6 @@ export default function Attepts({ initial, intentos }) {
                                    )
                          }
 
-
-
-
-=======
-                         <div
-                              className={style.message__body}
-                         >
-                              <CloseIcon className={style.message__close} onClick={handleClose} />
-                              <div className={style.message__icons}>
-                                   <img src={heart} alt="" />
-                              </div>
-                              <div className={style.message__title}>
-                                   <h2>Aun tienes {intentos} intentos para ganar el juego</h2>
-                              </div>
-                              <div className={style.message__text}>
-                                   <p>Vamos a seguir jugando</p>
-                              </div>
-                              <button
-                                   className='btn btn__bordo'
-                                   onClick={()=> navigate('/instructions')}
-                              >
-                                   JUGAR
-                              </button>
-                         </div>
-
->>>>>>> 031d09d4ecd91ad2c456d6ea850d991faf64bfde
                     </Box>
                </Modal>
           </div>

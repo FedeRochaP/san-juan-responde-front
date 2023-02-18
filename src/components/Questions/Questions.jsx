@@ -129,8 +129,10 @@ export default function Questions() {
                               <div  className={style.questions__btns}>
                                    {questions?.preguntas[preguntaActual].opciones?.length === 3 && <div  onClick={handleJoker} className={style.questions__joker}>
                                         <img src={joker} alt="" />
+                                        {/* <img src={jokerDisabled} alt="" /> */}
                                         
-                                   </div> }
+                                   </div> 
+                                   }
                                    
                                    <div className={style.questions__heart}>
                                         <p>{life}</p>

@@ -9,14 +9,9 @@ import Logos from '../Logos/Logos'
 
 import Congrats from '../Modals/Messages/Congrats'
 import Error from '../Modals/Messages/Error'
-// Images
-<<<<<<< HEAD
 import swal from 'sweetalert';
-
-import expansion from '../../assets/expansionProductiva.svg'
-=======
+// Images
 import expansion from '../../assets/expansionProductiva.png'
->>>>>>> 031d09d4ecd91ad2c456d6ea850d991faf64bfde
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contex/auth'
@@ -56,6 +51,7 @@ export default function Form() {
      const navigate = useNavigate()
      const [use,setUse] = useState(false)
      const { getQuestionsForm ,setJwt,setUser} = useContext(AuthContext)
+     const [error,setError] = useState(null)
 
      const handleChange = (e) => {
           const { name, value } = e.target
@@ -90,11 +86,16 @@ export default function Form() {
                     }
                })
                .catch((err) => {
-                    console.log(err)
+                    console.log(err.data.message)
                })
      }
 
-
+     useEffect(()=> {
+          if( form?.dni < 6 && form?.dni > 9  ){
+              return setError('El DNI tiene que estar entre 6 y 9 digitos')
+               
+          }
+     },[error])
 
     
      
@@ -120,6 +121,7 @@ export default function Form() {
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='dni' required />
                                         <span>Ingresa tu DNI</span>
+                                        {error && <p style={{color: 'red'}}>{error}</p>}
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='telefono' required />
