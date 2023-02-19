@@ -6,8 +6,9 @@ import style from './Login.module.css'
 // Components
 import Header from '../Header/Header'
 import Logos from '../Logos/Logos'
-import Attepts from '../Modals/Messages/Attempts'
+import Attempts from '../Modals/Messages/Attempts'
 import Congrats from '../Modals/Messages/Congrats'
+import Ups from '../Modals/Messages/Ups'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contex/auth'
@@ -49,8 +50,7 @@ export default function LoginUser() {
                          <button className='btn btn__gris' onClick={handleSubmit}>INGRESAR</button>
                     </div>
 
-                        {respuesta?.isRegistered && <Attepts initial={true} intentos={respuesta?.quedan} />}
-
+                        {respuesta?.isRegistered && <Attempts initial={true} intentos={respuesta?.quedan} />}
                </div>
           </div>
      )

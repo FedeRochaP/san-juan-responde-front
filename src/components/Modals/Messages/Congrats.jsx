@@ -39,7 +39,7 @@ export default function Congrats({intentos}) {
           <div style={{ width: "100%" }}>
                <Modal
                     open={open}
-                    onClose={handleClose}
+                    // onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                >

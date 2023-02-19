@@ -27,7 +27,7 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Ups({initial, intentos}) {
+export default function Ups({ initial, intentos }) {
 
      const [open, setOpen] = React.useState(initial);
      const navigate = useNavigate()
@@ -55,12 +55,14 @@ export default function Ups({initial, intentos}) {
                                    <h2>¡Ups!</h2>
                               </div>
                               <div className={style.message__text}>
-                                   <p>Ya no te quedan intentos. Próximamente tendrás mas novedades.</p>
+                                   <p>Fallaste, pero puedes intentarlo nuevamente </p>
+                                   <br />
+                                   <h2>Intento n/n</h2>
                               </div>
                               <button
                                    className='btn btn__bordo'
                               >
-                                   CERRAR
+                                   VOVER A INTENTAR
                               </button>
                          </div>
                     </Box>

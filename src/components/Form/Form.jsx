@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contex/auth'
+import axios from 'axios'
 
 // Styles
 import style from './Form.module.css'
@@ -9,29 +12,29 @@ import Logos from '../Logos/Logos'
 
 import Congrats from '../Modals/Messages/Congrats'
 import Error from '../Modals/Messages/Error'
-import swal from 'sweetalert';
+
+import swal from 'sweetalert'
+
 // Images
 import expansion from '../../assets/expansionProductiva.png'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../contex/auth'
+
 const departamento = [
      { id: 1, nombre: 'Rawson' },
      { id: 2, nombre: 'Capital' },
      { id: 3, nombre: 'Chimbas' },
      { id: 4, nombre: 'Rivadavia' },
-     { id: 5, nombre: 'Santa Lucia' },
+     { id: 5, nombre: 'Santa Lucía' },
      { id: 6, nombre: 'Pocito' },
      { id: 7, nombre: 'Caucete' },
-     { id: 8, nombre: 'Jachal' },
-     { id: 9, nombre: 'Albardon' },
+     { id: 8, nombre: 'Jáchal' },
+     { id: 9, nombre: 'Albardón' },
      { id: 10, nombre: 'Sarmiento' },
      { id: 11, nombre: 'Angaco' },
      { id: 12, nombre: '25 de Mayo' },
-     { id: 13, nombre: 'San Martin' },
-     { id: 14, nombre: 'Calingaste' },
+     { id: 13, nombre: 'San Martín' },
+     { id: 14, nombre: 'Calingasta' },
      { id: 15, nombre: '9 de Julio' },
-     { id: 16, nombre: 'Valle Fertil' },
+     { id: 16, nombre: 'Valle Fértil' },
      { id: 17, nombre: 'Iglesia' },
      { id: 18, nombre: 'Ullum' },
      { id: 19, nombre: 'Zonda' },
@@ -51,7 +54,6 @@ export default function Form() {
      const navigate = useNavigate()
      const [use,setUse] = useState(false)
      const { getQuestionsForm ,setJwt,setUser} = useContext(AuthContext)
-     const [error,setError] = useState(null)
 
      const handleChange = (e) => {
           const { name, value } = e.target
@@ -64,7 +66,7 @@ export default function Form() {
           })
      }
      const handleSubmitForm = async () => {
-          await axios.post(`http://localhost:8000/api/participante`, {
+          await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/participante`, {
                "nombre": form.nombre,
                "apellido": form.apellido,
                "telefono": form.telefono,
@@ -86,16 +88,11 @@ export default function Form() {
                     }
                })
                .catch((err) => {
-                    console.log(err.data.message)
+                    console.log(err)
                })
      }
 
-     useEffect(()=> {
-          if( form?.dni < 6 && form?.dni > 9  ){
-              return setError('El DNI tiene que estar entre 6 y 9 digitos')
-               
-          }
-     },[error])
+
 
     
      
@@ -121,7 +118,6 @@ export default function Form() {
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='dni' required />
                                         <span>Ingresa tu DNI</span>
-                                        {error && <p style={{color: 'red'}}>{error}</p>}
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='telefono' required />

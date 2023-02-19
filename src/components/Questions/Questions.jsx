@@ -27,51 +27,50 @@ export default function Questions() {
      const [isFinished, setIsFinished] = useState(false)
      const [life, setLife] = useState(3)
      const [error, setError] = useState(null)
-     const [areDisabled,setAreDisabled] = useState(false)
-     const { getQuestions, questions,setQuestions , postQuestions ,respuesta} = useContext(AuthContext)
-     
+     const [areDisabled, setAreDisabled] = useState(false)
+     const { getQuestions, questions, setQuestions, postQuestions, respuesta } = useContext(AuthContext)
 
-     useEffect(()=> {
+
+     useEffect(() => {
           getQuestions()
-     },[])
-     const nextQuestios = ()=> {
-               if (preguntaActual === questions?.preguntas - 1) {
-                    setIsFinished(true)
-                    setQuestions()
+     }, [])
+     const nextQuestios = () => {
+          if (preguntaActual === questions?.preguntas - 1) {
+               setIsFinished(true)
+               setQuestions()
 
-               } else{
-                    setPreguntaActual(preguntaActual + 1)
-                    setError(null)
-               }
+          } else {
+               setPreguntaActual(preguntaActual + 1)
+               setError(null)
+          }
      }
-     
-     const handleQuestions = (isCorrect,e) => {
-         
-          if(isCorrect === 'true'){
+
+     const handleQuestions = (isCorrect, e) => {
+
+          if (isCorrect === 'true') {
                setError(false)
                setPuntuacion(puntuacion + 1)
-               if(puntuacion + 1 === 3){
+               if (puntuacion + 1 === 3) {
                     setIsFinished(true)
                     setQuestions()
                     postQuestions()
                }
-          }else{
+          } else {
                setError(true)
           }
           isCorrect === 'false' && setLife(life - 1)
      }
-     const handleJoker = ()=> {
-          const questionsArray = {...questions}
-          const valor =  questions?.preguntas[preguntaActual]?.opciones?.findIndex(item=> {
-              return  item.isCorrect === 'false'
+     const handleJoker = () => {
+          const questionsArray = { ...questions }
+          const valor = questions?.preguntas[preguntaActual]?.opciones?.findIndex(item => {
+               return item.isCorrect === 'false'
           })
-          questionsArray?.preguntas[preguntaActual]?.opciones?.splice(valor,1)
+          questionsArray?.preguntas[preguntaActual]?.opciones?.splice(valor, 1)
           setQuestions(questionsArray)
-          
      }
-     if(isFinished){
+     if (isFinished) {
           return (
-          <Congrats intentos={questions?.quedan}/>
+               <Congrats intentos={questions?.quedan} />
           )
      }
      return (
@@ -96,50 +95,52 @@ export default function Questions() {
                               </div>
                               <div className={style.questions__list}>
                                    {
-                                        questions?.preguntas[preguntaActual]?.opciones.map((item,index) => (
-                                             <button disabled={!item.isCorrect && error != null} key={index} onClick={(e) => handleQuestions(item.isCorrect,e)} className='btn btn__rosa__dark'>{item.opciones}</button>
+                                        questions?.preguntas[preguntaActual]?.opciones.map((item, index) => (
+                                             <button disabled={!item.isCorrect && error != null} key={index} onClick={(e) => handleQuestions(item.isCorrect, e)} className='btn btn__rosa__dark'>{item.opciones}</button>
                                         ))
                                    }
 
                               </div>
                          </div>
 
-                         {
-                              error === false && (
-                                   <div className="questions__message">
-                                        <h2>¡Correcto!</h2>
-                                        <p>Oprime siguiente y continua jugando</p>
-                                   </div>
-                              )
-                         }
-                         {
-                              error === true && (
-                                   <>
-                                   <div className="questions__message">
-                                        <h2>¡Fallaste!</h2>
-                                        <p>Oprime siguiente y continua jugando</p>
-                                   </div>
-                                   
-                                   </>
-                              )
-
-                         }
-                         {life === 0 && <ModalLife intentos={questions.quedan}/> }
+                         <div className="questions__message">
+                              {
+                                   error === false && (
+                                        <>
+                                             <h2>¡Correcto!</h2>
+                                             <p>Oprime siguiente y continua jugando</p>
+                                        </>
+                                   )
+                              }
+                              {
+                                   error === true && (
+                                        <>
+                                             <h2>¡Fallaste!</h2>
+                                             <p>Oprime siguiente y continua jugando</p>
+                                        </>
+                                   )
+                              }
+                         </div>
+                         {life === 0 && <ModalLife intentos={questions.quedan} />}
                          <div className={style.questions__next}>
-                              <div  className={style.questions__btns}>
-                                   {questions?.preguntas[preguntaActual].opciones?.length === 3 && <div  onClick={handleJoker} className={style.questions__joker}>
-                                        <img src={joker} alt="" />
-                                        {/* <img src={jokerDisabled} alt="" /> */}
-                                        
-                                   </div> 
+                              <div className={style.questions__btns}>
+                                   {questions?.preguntas[preguntaActual].opciones?.length === 3
+                                        ? <div onClick={handleJoker} className={style.questions__joker}>
+                                             <img src={joker} alt="Comodín" />
+                                        </div>
+                                        : <div className={style.questions__joker}>
+                                             <img src={jokerDisabled} alt="Comodín Deshabilitado" />
+                                        </div>
                                    }
-                                   
+
                                    <div className={style.questions__heart}>
                                         <p>{life}</p>
                                    </div>
                               </div>
                               {
-                              error !== null &&  <button onClick={nextQuestios} className='btn btn__gris'>SIGUIENTE</button>
+                                   error !== null
+                                        ? <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
+                                        : <button onClick={nextQuestios} className='btn btn__gris' disabled>SIGUIENTE</button>
                               }
                          </div>
                     </div>

@@ -13,7 +13,7 @@ export const UserContext = ({ children }) => {
     
     
     const handleLogin = async ({ dni }) => {
-        await axios.post(`http://localhost:8000/api/participante/consulta`, {
+        await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/participante/consulta`, {
             "dni": dni
         }, {
             method: 'POST',
@@ -34,7 +34,7 @@ export const UserContext = ({ children }) => {
   
     
     const getQuestions= async()=> {
-        await axios.post(`http://localhost:8000/api/getPreguntas`, {
+        await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/getPreguntas`, {
             "dni": respuesta?.dni
         }, {
             method: 'POST',
@@ -64,7 +64,7 @@ export const UserContext = ({ children }) => {
         window.sessionStorage.setItem('user',user) 
     }, [user])
     const postQuestions =async () => {
-        await axios.post(`http://localhost:8000/api/intentos/guardar`, {
+        await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/intentos/guardar`, {
              "preguntas_correctas" : 3
         }, {
              method: 'POST',

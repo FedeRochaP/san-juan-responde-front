@@ -82,6 +82,7 @@
 .btn__bordo {
      background: var(--bordo);
      border: 1px solid var(--bordo);
+     transition: 0.7s;
 }
 
 .btn__bordo__dark {
@@ -92,10 +93,12 @@
 .btn__gris {
      background: var(--gris);
      border: 1px solid var(--gris);
+     transition: 0.7s;
 }
 
 .questions__message {
      width: 100%;
+     height: 90px !important;
      color: var(--bordo-dark);
      padding: 0 20px;
      display: flex;

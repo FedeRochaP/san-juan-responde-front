@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import heart from '../../../assets/heart.svg'
 import sad from '../../../assets/sadFace.svg'
 import { useNavigate } from 'react-router-dom';
+
 const styleModal = {
      position: 'absolute',
      top: '50%',
@@ -35,7 +36,7 @@ export default function Attepts({ initial, intentos }) {
 
      return (
           <div style={{ width: "100%" }}>
-               {/* <button onClick={handleOpen} className='btn btn__bordo'>Intentos test</button> */}
+               <button onClick={handleOpen} className='btn btn__bordo'>Intentos test</button>
                <Modal
                     open={open}
                     onClose={handleClose}
@@ -83,7 +84,7 @@ export default function Attepts({ initial, intentos }) {
                                                   <p>Ya no te quedan intentos. Próximamente tendrás mas novedades.</p>
                                              </div>
                                              <button
-                                                  className='btn btn__bordo'
+                                                  className='btn btn__bordo' onClick={handleClose}
                                              >
                                                   CERRAR
                                              </button>
