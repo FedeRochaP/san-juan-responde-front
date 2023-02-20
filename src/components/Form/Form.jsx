@@ -148,6 +148,7 @@ export default function Form() {
                                    </div>
                               </div>
                          </div>
+                         <br /><br />
                          <div className={style.form__btn}>
                               <img src={expansion} alt="" />
                               <button className='btn btn__gris' onClick={handleSubmitForm}>GUARDAR</button>

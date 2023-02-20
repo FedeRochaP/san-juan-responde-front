@@ -1,6 +1,5 @@
 .form__container {
      width: 100%;
-     height: 100%;
      padding: 0 20px;
      display: flex;
      flex-direction: column;
@@ -44,6 +43,10 @@
 
 .form__inputbox {
      position: relative;
+}
+
+.form__inputbox p {
+     margin-top: 10px;
 }
 
 .form__inputbox input,

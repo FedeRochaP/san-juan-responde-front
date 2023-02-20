@@ -46,7 +46,7 @@ export default function Questions() {
 
      const handleQuestions = (isCorrect, e) => {
 
-          if (isCorrect === 'true') {
+          if (isCorrect === true) {
                setError(false)
                setPuntuacion(puntuacion + 1)
                if (puntuacion + 1 === 3) {
@@ -56,7 +56,7 @@ export default function Questions() {
           } else {
                setError(true)
           }
-          isCorrect === 'false' && setLife(life - 1)
+          isCorrect === false && setLife(life - 1)
      }
      
      const handleJoker = () => {
@@ -64,12 +64,12 @@ export default function Questions() {
           if(jokerQuestions) {
                const questionsArray = { ...questions }
                const valor = questions?.preguntas[preguntaActual]?.opciones?.findIndex(item => {
-                    return item.isCorrect === 'false'
+                    return item.isCorrect === false
                })
                questionsArray?.preguntas[preguntaActual]?.opciones?.splice(valor, 1)
                setQuestions(questionsArray)
                setJokerQuestions(false)
-          } 
+          }
      }
 
      
@@ -121,8 +121,8 @@ export default function Questions() {
                               }
                          </div>
 
-                         {life === 0 && <Ups intentos={questions?.quedan} />}
-                         {isFinished===true && <Congrats intentosFeliz={questions?.quedan} />}
+                         {life === 0 && <Ups intentos={questions?.intentos} cantInt={questions?.cantIntentosPosibles} />}
+                         {isFinished===true && <Congrats intentosFeliz={questions?.intentos} cantInt={questions?.cantIntentosPosibles} />}
                          <div className={style.questions__next}>
                               <div className={style.questions__btns}>
                                    {questions?.preguntas[preguntaActual].opciones?.length === 3 && jokerQuestions===true

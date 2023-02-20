@@ -29,7 +29,7 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Congrats({ intentosFeliz }) {
+export default function Congrats({ intentosFeliz , cantInt }) {
 
      const [open, setOpen] = React.useState(true);
      const handleOpen = () => setOpen(true);
@@ -70,7 +70,7 @@ export default function Congrats({ intentosFeliz }) {
                                    <h4>Ya formas parte del sorteo </h4>
                               </div>
                               <div className={style.message__attempts}>
-                                   <h2>Intentos  {intentosFeliz}/5</h2>
+                                   <h2>Intentos  {intentosFeliz}/{cantInt}</h2>
                               </div>
                               <button
                                    className='btn btn__bordo'

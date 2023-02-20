@@ -35,7 +35,18 @@
      gap: 30px;
 }
 
-.container,
+.container {
+     width: 100%;
+     max-width: 900px;
+     padding: 15px 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-between;
+     gap: 30px;
+     text-align: center;
+}
+
 .container__user {
      width: 100%;
      max-width: 900px;
@@ -44,6 +55,7 @@
      display: flex;
      flex-direction: column;
      align-items: center;
+     justify-content: space-between;
      gap: 30px;
      text-align: center;
 }
@@ -129,9 +141,4 @@
 }
 .incorrect{
      background-color: red;
-}
-@media screen and (max-height: 670px) {
-     .container__user {
-          height: 130vh;
-     }
 }

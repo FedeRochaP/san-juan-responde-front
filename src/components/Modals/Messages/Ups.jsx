@@ -27,7 +27,7 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Ups({ intentos }) {
+export default function Ups({ intentos, cantInt }) {
 
      const [open, setOpen] = React.useState(true);
      const navigate = useNavigate()
@@ -57,7 +57,7 @@ export default function Ups({ intentos }) {
                               <div className={style.message__text}>
                                    <p>Fallaste, pero puedes intentarlo nuevamente </p>
                                    <br />
-                                   <h2>Intento {intentos}/5</h2>
+                                   <h2>Intento {intentos}/{cantInt}</h2>
                               </div>
                               {intentos === 0 ?
                                    <button
