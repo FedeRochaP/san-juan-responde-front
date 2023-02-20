@@ -36,7 +36,6 @@ export default function Attepts({ initial, intentos }) {
 
      return (
           <div style={{ width: "100%" }}>
-               <button onClick={handleOpen} className='btn btn__bordo'>Intentos test</button>
                <Modal
                     open={open}
                     onClose={handleClose}

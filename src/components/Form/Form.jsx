@@ -19,25 +19,25 @@ import swal from 'sweetalert'
 import expansion from '../../assets/expansionProductiva.png'
 
 const departamento = [
-     { id: 1, nombre: 'Rawson' },
-     { id: 2, nombre: 'Capital' },
-     { id: 3, nombre: 'Chimbas' },
-     { id: 4, nombre: 'Rivadavia' },
-     { id: 5, nombre: 'Santa Lucía' },
-     { id: 6, nombre: 'Pocito' },
-     { id: 7, nombre: 'Caucete' },
-     { id: 8, nombre: 'Jáchal' },
-     { id: 9, nombre: 'Albardón' },
-     { id: 10, nombre: 'Sarmiento' },
-     { id: 11, nombre: 'Angaco' },
-     { id: 12, nombre: '25 de Mayo' },
-     { id: 13, nombre: 'San Martín' },
-     { id: 14, nombre: 'Calingasta' },
-     { id: 15, nombre: '9 de Julio' },
-     { id: 16, nombre: 'Valle Fértil' },
-     { id: 17, nombre: 'Iglesia' },
-     { id: 18, nombre: 'Ullum' },
-     { id: 19, nombre: 'Zonda' },
+     { id: 1, nombre: 'Rawson'},
+     { id: 2, nombre: 'Capital'},
+     { id: 3, nombre: 'Chimbas'},
+     { id: 4, nombre: 'Rivadavia'},
+     { id: 5, nombre: 'Santa Lucía'},
+     { id: 6, nombre: 'Pocito'},
+     { id: 7, nombre: 'Caucete'},
+     { id: 8, nombre: 'Jáchal'},
+     { id: 9, nombre: 'Albardón'},
+     { id: 10, nombre: 'Sarmiento'},
+     { id: 11, nombre: 'Angaco'},
+     { id: 12, nombre: '25 de Mayo'},
+     { id: 13, nombre: 'San Martín'},
+     { id: 14, nombre: 'Calingasta'},
+     { id: 15, nombre: '9 de Julio'},
+     { id: 16, nombre: 'Valle Fértil'},
+     { id: 17, nombre: 'Iglesia'},
+     { id: 18, nombre: 'Ullum'},
+     { id: 19, nombre: 'Zonda'},
 
 ]
 const mostrarAlerta = (mensaje) => {
@@ -50,9 +50,10 @@ const mostrarAlerta = (mensaje) => {
      })
  }
 export default function Form() {
-     const [form, setForm] = useState()
+     const [form, setForm] = useState([])
      const navigate = useNavigate()
-     const [use,setUse] = useState(false)
+     const [error,setError] = useState("")
+
      const { getQuestionsForm ,setJwt,setUser} = useContext(AuthContext)
 
      const handleChange = (e) => {
@@ -65,13 +66,14 @@ export default function Form() {
                }
           })
      }
-     const handleSubmitForm = async () => {
+
+     const formSubmit = async()=> {
           await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/participante`, {
-               "nombre": form.nombre,
-               "apellido": form.apellido,
-               "telefono": form.telefono,
-               "dni": form.dni,
-               "departamento_id": form.departamento_id
+               "nombre": form?.nombre,
+               "apellido": form?.apellido,
+               "telefono": form?.telefono,
+               "dni": form?.dni,
+               "departamento_id": form?.departamento_id
           }, {
                method: 'POST',
                withCredentials: true,
@@ -91,12 +93,14 @@ export default function Form() {
                     console.log(err)
                })
      }
+     const handleSubmitForm =  () => {
+          if(form.length === 0){
+               setError("Este campo es requerido")
+          }else{
+               formSubmit()
+          }
+     }
 
-
-
-    
-     
-      
      return (
           <div className='view'>
                <Header />
@@ -110,18 +114,25 @@ export default function Form() {
                                    <div className={style.form__inputbox}>
                                         <input type="text" onChange={handleChange} name='nombre' required />
                                         <span>Ingresa tu nombre</span>
+                                        {error && <p style={{color:'red'}}>{error}</p>}
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="text" onChange={handleChange} name='apellido' required />
                                         <span>Ingresa tu apellido</span>
+                                        {error && <p style={{color:'red'}}>{error}</p>}
+
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='dni' required />
                                         <span>Ingresa tu DNI</span>
+                                        {error && <p style={{color:'red'}}>{error}</p>}
+
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='telefono' required />
                                         <span>Ingresa tu celular</span>
+                                        {error && <p style={{color:'red'}}>{error}</p>}
+
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <select onChange={handleChange} name="departamento_id" id="">
@@ -133,6 +144,7 @@ export default function Form() {
                                                   ))
                                              }
                                         </select>
+                                        {error && <p style={{color:'red'}}>{error}</p>}
                                    </div>
                               </div>
                          </div>

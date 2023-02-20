@@ -7,8 +7,8 @@ export const UserContext = ({ children }) => {
 
     const [respuesta, setRespuesta] = useState()
     const [questions,setQuestions] = useState()
+    const [jokerQuestions,setJokerQuestions] = useState(true)
     const [jwt,setJwt] = useState(()=> window.sessionStorage.getItem('token'))
-    // const [jwtForm,setJwtForm] = useState(()=> window.sessionStorage.getItem('token'))
     const [user,setUser] = useState(()=> window.sessionStorage.getItem('user') || null)
     
     
@@ -50,6 +50,7 @@ export const UserContext = ({ children }) => {
             .then(async (datos) => {
                 if (datos.status) {
                     setQuestions(datos)
+                    setJokerQuestions(true)
                 }
             })
             .catch((err) => {
@@ -79,7 +80,6 @@ export const UserContext = ({ children }) => {
              .then(response => response.data)
              .then(async (datos) => {
                   if (datos?.status) {
-                      console.log('hola')
                   }
              })
              .catch((err) => {
@@ -87,7 +87,18 @@ export const UserContext = ({ children }) => {
              })
    }
     return (
-        <AuthContext.Provider value={{ respuesta, handleLogin ,questions,setJwt,setUser,getQuestions,setQuestions,postQuestions}}>
+        <AuthContext.Provider value={{ 
+            respuesta, 
+            handleLogin ,
+            questions,
+            setJwt
+            ,setUser,
+            getQuestions,
+            setQuestions,
+            postQuestions,
+            setJokerQuestions,
+            jokerQuestions
+            }}>
             {children}
         </AuthContext.Provider>
     )

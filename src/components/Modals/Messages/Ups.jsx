@@ -27,16 +27,17 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Ups({ initial, intentos }) {
+export default function Ups({ intentos }) {
 
-     const [open, setOpen] = React.useState(initial);
+     const [open, setOpen] = React.useState(true);
      const navigate = useNavigate()
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
-
+     const handleClick = () => {
+          intentos === 0 ? window.open('https://fiestanacionaldelsol.com') : navigate('/instructions')
+     }
      return (
           <div style={{ width: "100%" }}>
-               {/* <button onClick={handleOpen} className='btn btn__bordo'>Intentos test</button> */}
                <Modal
                     open={open}
                     onClose={handleClose}
@@ -46,8 +47,7 @@ export default function Ups({ initial, intentos }) {
                     <Box sx={styleModal}>
                          <div
                               className={style.message__body}
-                         >
-                              <CloseIcon className={style.message__close} onClick={handleClose} />
+                         >    
                               <div className={style.message__icons}>
                                    <img src={sad} alt="" />
                               </div>
@@ -57,13 +57,25 @@ export default function Ups({ initial, intentos }) {
                               <div className={style.message__text}>
                                    <p>Fallaste, pero puedes intentarlo nuevamente </p>
                                    <br />
-                                   <h2>Intento n/n</h2>
+                                   <h2>Intento {intentos}/5</h2>
                               </div>
-                              <button
-                                   className='btn btn__bordo'
-                              >
-                                   VOVER A INTENTAR
-                              </button>
+                              {intentos === 0 ?
+                                   <button
+                                        className='btn btn__bordo'
+                                        onClick={handleClick}
+                                   >
+                                        VOVER A INTENTAR
+                                   </button>
+                                   :
+                                   <button
+                                        className='btn btn__bordo'
+                                        onClick={handleClick}
+                                   >
+                                        FINALIZAR
+                                   </button>
+
+                              }
+
                          </div>
                     </Box>
                </Modal>

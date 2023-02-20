@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
 // Styles
 import style from './Login.module.css'
@@ -17,22 +17,30 @@ import { AuthContext } from '../../contex/auth'
 export default function LoginUser() {
      const [dni, setDni] = useState('')
      const navigate = useNavigate()
-     const {handleLogin,respuesta} = useContext(AuthContext)
-     
-     useEffect(()=> {
-           if(respuesta?.status){
-                !respuesta?.isRegistered ? navigate('/form') : ''
-           }
-     },[respuesta?.isRegistered])
+     const [inputFill, setInputFill] = useState(false)
+     const [error, serError] = useState("")
+     const { handleLogin, respuesta } = useContext(AuthContext)
+     const refPrevius = useRef(dni)
 
-     const handleSubmit = async()=> {
-          try {
-              await handleLogin({dni})
-          } catch (err) {
-               console.log(err.response.data)
+     useEffect(() => {
+          if (respuesta?.status) {
+               !respuesta?.isRegistered ? navigate('/form') : ''
+          }
+     }, [respuesta?.isRegistered])
+
+     const handleSubmit = async () => {
+          if(refPrevius.current === dni) return
+          refPrevius.current = dni
+          if (dni.length < 6 ||  dni.length > 8) {
+               serError('El DNI debe tener entre 6 y 9 dígitos.')
+          } else {
+               await handleLogin({ dni })
           }
      }
 
+     useEffect(()=> {
+          dni.length > 6  ||  dni.length > 8 ? setInputFill(true)  : setInputFill(false)
+     },[dni])
      return (
           <div className='view'>
                <Header />
@@ -47,10 +55,13 @@ export default function LoginUser() {
                               <input type="number" name="dni" value={dni} onChange={(e) => setDni(e.target.value)} required />
                               <span>Ingresa tu DNI sin puntos</span>
                          </div>
-                         <button className='btn btn__gris' onClick={handleSubmit}>INGRESAR</button>
+
+                         {error && <p style={{color:'red'}}>{error}</p>}
+
+                         <button className={inputFill === true ? 'btn btn__bordo' : 'btn btn__gris'} onClick={handleSubmit}>INGRESAR</button>
                     </div>
 
-                        {respuesta?.isRegistered && <Attempts initial={true} intentos={respuesta?.quedan} />}
+                    {respuesta?.isRegistered && <Attempts initial={true} intentos={respuesta?.quedan} />}
                </div>
           </div>
      )

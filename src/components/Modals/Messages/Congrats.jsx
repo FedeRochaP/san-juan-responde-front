@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import Confetti from 'react-confetti'
 // Styles
 import style from './Messages.module.css'
 
@@ -15,6 +15,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import confeti from '../../../assets/confeti.svg'
 import happy from '../../../assets/happyFace.svg'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contex/auth';
 
 const styleModal = {
      position: 'absolute',
@@ -28,22 +29,28 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Congrats({intentos}) {
+export default function Congrats({ intentosFeliz }) {
 
      const [open, setOpen] = React.useState(true);
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
      const navigate = useNavigate()
-
+     const { questions } = React.useContext(AuthContext)
      return (
           <div style={{ width: "100%" }}>
+
                <Modal
                     open={open}
                     // onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                >
+
                     <Box sx={styleModal}>
+                         <Confetti 
+                              style={{width:'100%', height:'416px'}}
+                         />
+
                          <div
                               className={style.message__body}
                          >
@@ -63,11 +70,11 @@ export default function Congrats({intentos}) {
                                    <h4>Ya formas parte del sorteo </h4>
                               </div>
                               <div className={style.message__attempts}>
-                                   <h2>Intentos  {intentos}/5</h2>
+                                   <h2>Intentos  {intentosFeliz}/5</h2>
                               </div>
                               <button
                                    className='btn btn__bordo'
-                                   onClick={()=> navigate(`/instructions`)}
+                                   onClick={() => navigate(`/instructions`)}
                               >
                                    CONTINUAR
                               </button>

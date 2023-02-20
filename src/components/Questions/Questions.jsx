@@ -16,10 +16,9 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import signo from '../../assets/signo.svg'
 import joker from '../../assets/joker.svg'
 import jokerDisabled from '../../assets/jokerDisabled.svg'
-import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contex/auth';
 import Congrats from '../Modals/Messages/Congrats';
-import ModalLife from '../Modals/Messages/modalLife';
+import Ups from '../Modals/Messages/Ups';
 
 export default function Questions() {
      const [preguntaActual, setPreguntaActual] = useState(0)
@@ -27,22 +26,21 @@ export default function Questions() {
      const [isFinished, setIsFinished] = useState(false)
      const [life, setLife] = useState(3)
      const [error, setError] = useState(null)
-     const [areDisabled, setAreDisabled] = useState(false)
-     const { getQuestions, questions, setQuestions, postQuestions, respuesta } = useContext(AuthContext)
-
+     const { getQuestions, questions, setQuestions, postQuestions,setJokerQuestions, jokerQuestions } = useContext(AuthContext)
 
      useEffect(() => {
           getQuestions()
      }, [])
+
      const nextQuestios = () => {
           if (preguntaActual === questions?.preguntas - 1) {
                setIsFinished(true)
-               setQuestions()
 
           } else {
                setPreguntaActual(preguntaActual + 1)
                setError(null)
           }
+          
      }
 
      const handleQuestions = (isCorrect, e) => {
@@ -52,7 +50,6 @@ export default function Questions() {
                setPuntuacion(puntuacion + 1)
                if (puntuacion + 1 === 3) {
                     setIsFinished(true)
-                    setQuestions()
                     postQuestions()
                }
           } else {
@@ -60,19 +57,21 @@ export default function Questions() {
           }
           isCorrect === 'false' && setLife(life - 1)
      }
+     
      const handleJoker = () => {
-          const questionsArray = { ...questions }
-          const valor = questions?.preguntas[preguntaActual]?.opciones?.findIndex(item => {
-               return item.isCorrect === 'false'
-          })
-          questionsArray?.preguntas[preguntaActual]?.opciones?.splice(valor, 1)
-          setQuestions(questionsArray)
+
+          if(jokerQuestions) {
+               const questionsArray = { ...questions }
+               const valor = questions?.preguntas[preguntaActual]?.opciones?.findIndex(item => {
+                    return item.isCorrect === 'false'
+               })
+               questionsArray?.preguntas[preguntaActual]?.opciones?.splice(valor, 1)
+               setQuestions(questionsArray)
+               setJokerQuestions(false)
+          } 
      }
-     if (isFinished) {
-          return (
-               <Congrats intentos={questions?.quedan} />
-          )
-     }
+
+     
      return (
           <div className='view'>
                <Header />
@@ -102,7 +101,6 @@ export default function Questions() {
 
                               </div>
                          </div>
-
                          <div className="questions__message">
                               {
                                    error === false && (
@@ -121,10 +119,12 @@ export default function Questions() {
                                    )
                               }
                          </div>
-                         {life === 0 && <ModalLife intentos={questions.quedan} />}
+
+                         {life === 0 && <Ups intentos={questions?.quedan} />}
+                         {isFinished===true && <Congrats intentosFeliz={questions?.quedan} />}
                          <div className={style.questions__next}>
                               <div className={style.questions__btns}>
-                                   {questions?.preguntas[preguntaActual].opciones?.length === 3
+                                   {questions?.preguntas[preguntaActual].opciones?.length === 3 && jokerQuestions===true
                                         ? <div onClick={handleJoker} className={style.questions__joker}>
                                              <img src={joker} alt="Comodín" />
                                         </div>
