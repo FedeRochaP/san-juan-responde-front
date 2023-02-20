@@ -27,12 +27,14 @@ const styleModal = {
      overflowY: 'auto'
 };
 
-export default function Attepts({ initial, intentos }) {
+export default function Attepts({ initial, intentos,  cantInt }) {
 
      const [open, setOpen] = React.useState(initial);
      const navigate = useNavigate()
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
+
+     console.log(intentos);
 
      return (
           <div style={{ width: "100%" }}>
@@ -46,7 +48,7 @@ export default function Attepts({ initial, intentos }) {
 
                          {/* Cuando todavia te quedan intentos */}
                          {
-                              intentos > 0 ?
+                              intentos < cantInt ?
                                    (
                                         <div
                                              className={style.message__body}
@@ -56,7 +58,7 @@ export default function Attepts({ initial, intentos }) {
                                                   <img src={heart} alt="" />
                                              </div>
                                              <div className={style.message__title}>
-                                                  <h2>Aun tienes {intentos} intentos para ganar el juego</h2>
+                                                  <h2>Aun tienes {cantInt - intentos} intentos para ganar el juego</h2>
                                              </div>
                                              <div className={style.message__text}>
                                                   <p>Vamos a seguir jugando</p>
@@ -67,8 +69,8 @@ export default function Attepts({ initial, intentos }) {
                                              >
                                                   JUGAR
                                              </button>
-                                        </div>) :
-                                   (
+                                        </div>) 
+                                        : (
                                         <div
                                              className={style.message__body}
                                         >

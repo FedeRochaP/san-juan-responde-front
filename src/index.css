@@ -39,6 +39,7 @@
 .container__user {
      width: 100%;
      max-width: 900px;
+     min-height: 95vh;
      padding: 15px 20px;
      display: flex;
      flex-direction: column;
@@ -49,11 +50,11 @@
 
 .container__user {
      padding: 15px 0 !important;
-     height: 80vh;
 }
 
 .logo__img {
      width: 300px;
+     margin-bottom: 20px;
 }
 
 .logo__img img {
@@ -131,6 +132,6 @@
 }
 @media screen and (max-height: 670px) {
      .container__user {
-          height: 100vh;
+          height: 130vh;
      }
 }

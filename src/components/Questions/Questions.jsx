@@ -19,6 +19,7 @@ import jokerDisabled from '../../assets/jokerDisabled.svg'
 import { AuthContext } from '../../contex/auth';
 import Congrats from '../Modals/Messages/Congrats';
 import Ups from '../Modals/Messages/Ups';
+import { bottom } from '@popperjs/core';
 
 export default function Questions() {
      const [preguntaActual, setPreguntaActual] = useState(0)
@@ -145,7 +146,7 @@ export default function Questions() {
                          </div>
                     </div>
                </div>
-               <Logos />
+               <Logos className={style.questions__logo} />
           </div>
      )
 }

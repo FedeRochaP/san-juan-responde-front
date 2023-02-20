@@ -39,6 +39,7 @@ export default function Instructions() {
                                         <li>Espera ver tu resultado. </li>
                                         <li>Si fallas puede volver a intentarlo, pero  perderás una vida. Las vidas restantes se indican con el corazón.</li>
                                         <li>Tienes tres comodines para utilizar, te ayudaran a encontrar la respuesta correcta. </li>
+                                        <li>Solo pueden participar mayores de 18 años. </li>
                                    </ol>
                               </div>
                          </div>

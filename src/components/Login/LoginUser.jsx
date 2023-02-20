@@ -61,7 +61,7 @@ export default function LoginUser() {
                          <button className={inputFill === true ? 'btn btn__bordo' : 'btn btn__gris'} onClick={handleSubmit}>INGRESAR</button>
                     </div>
 
-                    {respuesta?.isRegistered && <Attempts initial={true} intentos={respuesta?.quedan} />}
+                    {respuesta?.isRegistered && <Attempts initial={true} intentos={respuesta?.intentos} cantInt={respuesta?.cantIntentosPosibles} />}
                </div>
           </div>
      )

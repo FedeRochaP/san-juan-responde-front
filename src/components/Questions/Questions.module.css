@@ -3,7 +3,7 @@
      height: 100%;
      display: flex;
      flex-direction: column;
-     justify-content: space-between;
+     gap: 30px;
      align-items: center;
 }
 
@@ -48,7 +48,8 @@
 
 .questions__title {
      width: 100%;
-     height: 100px;
+     height: 170px;
+     padding: 20px 10px;
      background: var(--bordo-dark);
      color: white;
      display: flex;
