@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contex/auth';
 import Confetti from 'react-confetti'
+
 // Styles
 import style from './Messages.module.css'
 
@@ -14,8 +17,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 // Images
 import confeti from '../../../assets/confeti.svg'
 import happy from '../../../assets/happyFace.svg'
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../contex/auth';
+import expansion from '../../../assets/expansionProductiva.png'
 
 const styleModal = {
      position: 'absolute',
@@ -72,6 +74,7 @@ export default function Congrats({ intentosFeliz , cantInt }) {
                               <div className={style.message__attempts}>
                                    <h2>Intentos  {intentosFeliz}/{cantInt}</h2>
                               </div>
+                              <img src={expansion} alt=""  className={style.message__logo}/>
                               <button
                                    className='btn btn__bordo'
                                    onClick={() => navigate(`/instructions`)}

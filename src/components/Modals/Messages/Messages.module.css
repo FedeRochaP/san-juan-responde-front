@@ -75,6 +75,10 @@
      font-size: 30px;
 }
 
+.message__logo {
+     width: 120px;
+}
+
 .message__text p {
      font-family: brokman-light;
      font-size: 20px;
