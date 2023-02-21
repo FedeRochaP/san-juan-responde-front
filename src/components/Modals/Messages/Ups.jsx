@@ -34,7 +34,7 @@ export default function Ups({ intentos, cantInt }) {
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
      const handleClick = () => {
-          intentos === 0 ? window.open('https://fiestanacionaldelsol.com') : navigate('/instructions')
+          intentos === cantInt ? window.open('https://fiestanacionaldelsol.com') : navigate('/instructions')
      }
      return (
           <div style={{ width: "100%" }}>
@@ -59,19 +59,19 @@ export default function Ups({ intentos, cantInt }) {
                                    <br />
                                    <h2>Intento {intentos}/{cantInt}</h2>
                               </div>
-                              {intentos === 0 ?
+                              {intentos === cantInt ?
                                    <button
                                         className='btn btn__bordo'
                                         onClick={handleClick}
                                    >
-                                        VOVER A INTENTAR
+                                        FINALIZAR
                                    </button>
                                    :
                                    <button
                                         className='btn btn__bordo'
                                         onClick={handleClick}
                                    >
-                                        FINALIZAR
+                                        VOVER A INTENTAR
                                    </button>
 
                               }

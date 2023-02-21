@@ -38,6 +38,10 @@ export default function Congrats({ intentosFeliz , cantInt }) {
      const handleClose = () => setOpen(false);
      const navigate = useNavigate()
      const { questions } = React.useContext(AuthContext)
+     const handleClick = () => {
+          intentosFeliz === cantInt ? window.open('https://fiestanacionaldelsol.com')  : navigate('/instructions')
+     }
+
      return (
           <div style={{ width: "100%" }}>
 
@@ -75,12 +79,23 @@ export default function Congrats({ intentosFeliz , cantInt }) {
                                    <h2>Intentos  {intentosFeliz}/{cantInt}</h2>
                               </div>
                               <img src={expansion} alt=""  className={style.message__logo}/>
-                              <button
-                                   className='btn btn__bordo'
-                                   onClick={() => navigate(`/instructions`)}
-                              >
-                                   CONTINUAR
-                              </button>
+                              {intentosFeliz === cantInt ?
+                                   <button
+                                        className='btn btn__bordo'
+                                        onClick={handleClick}
+                                   >
+                                        FINALIZAR
+                                   </button>
+                                   :
+                                   <button
+                                        className='btn btn__bordo'
+                                        onClick={handleClick}
+                                   >
+                                        VOVER A INTENTAR
+                                   </button>
+
+                              }
+
                          </div>
                     </Box>
                </Modal>
