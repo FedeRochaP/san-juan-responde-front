@@ -6,12 +6,12 @@ export const AuthContext = React.createContext('')
 export const UserContext = ({ children }) => {
 
     const [respuesta, setRespuesta] = useState()
-    const [questions,setQuestions] = useState()
-    const [jokerQuestions,setJokerQuestions] = useState(true)
-    const [jwt,setJwt] = useState(()=> window.sessionStorage.getItem('token'))
-    const [user,setUser] = useState(()=> window.sessionStorage.getItem('user') || null)
-    
-    
+    const [questions, setQuestions] = useState()
+    const [jokerQuestions, setJokerQuestions] = useState(true)
+    const [jwt, setJwt] = useState(() => window.sessionStorage.getItem('token'))
+    const [user, setUser] = useState(() => window.sessionStorage.getItem('user') || null)
+
+
     const handleLogin = async ({ dni }) => {
         await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/participante/consulta`, {
             "dni": dni
@@ -24,23 +24,23 @@ export const UserContext = ({ children }) => {
             .then((datos) => {
                 setRespuesta(datos)
                 setJwt(datos?.token)
-                
+                // setUser(datos.intentos)
             })
             .catch((err) => {
                 window.sessionStorage.removeItem('token')
                 console.log(err)
             })
     }
-  
-    
-    const getQuestions= async()=> {
+
+
+    const getQuestions = async () => {
         await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/getPreguntas`, {
             "dni": respuesta?.dni
         }, {
             method: 'POST',
             headers: {
-                "Authorization": 
-                `Bearer ${jwt}`
+                "Authorization":
+                    `Bearer ${jwt}`
             },
             withCredentials: true,
 
@@ -51,6 +51,8 @@ export const UserContext = ({ children }) => {
                 if (datos.status) {
                     setQuestions(datos)
                     setJokerQuestions(true)
+                    // setUser(datos.intentos)
+
                 }
             })
             .catch((err) => {
@@ -58,47 +60,48 @@ export const UserContext = ({ children }) => {
             })
     }
     useEffect(() => {
-        window.sessionStorage.setItem('token',jwt) 
+        window.sessionStorage.setItem('token', jwt)
     }, [jwt])
 
-    useEffect(() => {
-        window.sessionStorage.setItem('user',user) 
-    }, [user])
-    const postQuestions =async () => {
+    // useEffect(() => {
+    //     window.sessionStorage.setItem('user', user)
+    // }, [user])
+    const postQuestions = async () => {
         await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/intentos/guardar`, {
-             "preguntas_correctas" : 3
+            "preguntas_correctas": 3
         }, {
-             method: 'POST',
-             headers: {
-                "Authorization": 
-                `Bearer ${jwt}`
+            method: 'POST',
+            headers: {
+                "Authorization":
+                    `Bearer ${jwt}`
             },
-             withCredentials: true,
-             
+            withCredentials: true,
+
 
         })
-             .then(response => response.data)
-             .then(async (datos) => {
-                  if (datos?.status) {
-                  }
-             })
-             .catch((err) => {
-                  console.log(err)
-             })
-   }
+            .then(response => response.data)
+            .then(async (datos) => {
+                if (datos?.status) {
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
     return (
-        <AuthContext.Provider value={{ 
-            respuesta, 
-            handleLogin ,
+        <AuthContext.Provider value={{
+            respuesta,
+            handleLogin,
             questions,
-            setJwt
-            ,setUser,
+            setJwt, 
+            setUser,
+            user,
             getQuestions,
             setQuestions,
             postQuestions,
             setJokerQuestions,
             jokerQuestions
-            }}>
+        }}>
             {children}
         </AuthContext.Provider>
     )

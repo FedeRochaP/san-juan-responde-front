@@ -49,10 +49,19 @@ const mostrarAlerta = (mensaje) => {
          timer: "2000",
      })
  }
+ const mostrarAlertaError = (mensaje) => {
+     swal({
+         title: "Error! ",
+         text: mensaje,
+         icon: "error",
+         button: "Aceptar",
+         timer: "2000",
+     })
+ }
 export default function Form() {
-     const [form, setForm] = useState([])
+     const [form, setForm] = useState()
      const navigate = useNavigate()
-     const [error,setError] = useState("")
+     const [error,setError] = useState({})
 
      const { getQuestionsForm ,setJwt,setUser} = useContext(AuthContext)
 
@@ -85,20 +94,61 @@ export default function Form() {
                          mostrarAlerta(datos.message)
                          setForm()
                          setJwt(datos.token)
-                         setUser(datos.model.dni)
                          navigate('/instructions')
                     }
                })
                .catch((err) => {
-                    console.log(err)
+                    
+                    console.log('hola')
                })
      }
-     const handleSubmitForm =  () => {
-          if(form.length === 0){
-               setError("Este campo es requerido")
-          }else{
-               formSubmit()
+     const onValidate = ()=> {
+          let isError = false
+          let errors = {}     
+          if(!form?.nombre?.trim()) {
+               errors.nombre = 'El campo Nombre no debe estar vacio'
+               isError= true
           }
+          if(!form?.apellido?.trim()) {
+               errors.apellido = 'El campo Apellido no debe estar vacio'
+               isError= true
+          }
+          if(!form?.telefono?.trim()) {
+               errors.telefono = 'El campo Telefono no debe estar vacio'
+               isError= true
+          }else if(form?.telefono?.length < 9){
+               errors.telefono = 'El campo Telefono debe ser mayor a 8 dígitos'
+               isError= true
+          }else if(form?.telefono[0] === '0' ){
+               errors.telefono = 'El campo Telefono no debe contener 0 al principio'
+               isError= true
+          }
+          if(!form?.dni?.trim()) {
+               errors.dni = 'El campo DNI no debe estar vacio'
+               isError= true
+          }else if(form?.dni?.length < 7 || form?.dni?.length > 8){
+               errors.dni = 'El campo DNI debe tener entre 7 y 9 dígitos'
+               isError= true
+          }
+          if(!form?.departamento_id) {
+               errors.departamento_id = 'Debe seleccionar algun departamento'
+               isError= true
+          }
+
+          return isError ? errors : null
+     }
+     const handleSubmitForm =  () => {
+         const err = onValidate()
+          
+         if(err === null) {
+              formSubmit()
+              setError({})
+
+         }else{
+          setError(err)
+         }
+
+          
      }
 
      return (
@@ -114,24 +164,25 @@ export default function Form() {
                                    <div className={style.form__inputbox}>
                                         <input type="text" onChange={handleChange} name='nombre' required />
                                         <span>Ingresa tu nombre</span>
-                                        {error && <p style={{color:'red'}}>{error}</p>}
+                                        {error && <p style={{color:'red'}}>{error.nombre}</p>}
+
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="text" onChange={handleChange} name='apellido' required />
                                         <span>Ingresa tu apellido</span>
-                                        {error && <p style={{color:'red'}}>{error}</p>}
+                                        {error && <p style={{color:'red'}}>{error.apellido}</p>}
 
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='dni' required />
                                         <span>Ingresa tu DNI</span>
-                                        {error && <p style={{color:'red'}}>{error}</p>}
+                                        {error && <p style={{color:'red'}}>{error.dni}</p>}
 
                                    </div>
                                    <div className={style.form__inputbox}>
                                         <input type="number" onChange={handleChange} name='telefono' required />
                                         <span>Ingresa tu celular</span>
-                                        {error && <p style={{color:'red'}}>{error}</p>}
+                                        {error && <p style={{color:'red'}}>{error.telefono}</p>}
 
                                    </div>
                                    <div className={style.form__inputbox}>
@@ -144,7 +195,7 @@ export default function Form() {
                                                   ))
                                              }
                                         </select>
-                                        {error && <p style={{color:'red'}}>{error}</p>}
+                                        {error && <p style={{color:'red'}}>{error.departamento_id}</p>}
                                    </div>
                               </div>
                          </div>
@@ -155,8 +206,6 @@ export default function Form() {
                          </div>
                     </div>
 
-                    {/* <Congrats />
-                    <Error /> */}
 
                </div>
                <Logos />

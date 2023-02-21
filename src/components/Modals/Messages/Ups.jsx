@@ -34,7 +34,8 @@ export default function Ups({ intentos, cantInt }) {
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
      const handleClick = () => {
-          intentos === cantInt ? window.open('https://fiestanacionaldelsol.com') : navigate('/instructions')
+          intentos === cantInt ? window.location.href = '/' : navigate('/instructions')
+
      }
      return (
           <div style={{ width: "100%" }}>

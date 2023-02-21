@@ -39,7 +39,7 @@ export default function Congrats({ intentosFeliz , cantInt }) {
      const navigate = useNavigate()
      const { questions } = React.useContext(AuthContext)
      const handleClick = () => {
-          intentosFeliz === cantInt ? window.open('https://fiestanacionaldelsol.com')  : navigate('/instructions')
+          intentosFeliz === cantInt ? window.location.href = '/'   : navigate('/instructions')
      }
 
      return (
