@@ -72,7 +72,7 @@ export default function Ups({ intentos, cantInt }) {
                                         className='btn btn__bordo'
                                         onClick={handleClick}
                                    >
-                                        VOVER A INTENTAR
+                                        VOLVER A INTENTAR
                                    </button>
 
                               }

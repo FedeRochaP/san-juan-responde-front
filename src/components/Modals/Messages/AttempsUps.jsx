@@ -50,7 +50,7 @@ export const AttempsUps = () => {
                         <h2>¡Ups!</h2>
                     </div>
                     <div className={style.message__text}>
-                        <p>Ya no te quedan intentos. Próximamente tendrás mas novedades.</p>
+                        <p>Ya no te quedan intentos. Próximamente tendrás novedades.</p>
                     </div>
                     <button
                         className='btn btn__bordo' onClick={handleClose}

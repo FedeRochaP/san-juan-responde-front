@@ -28,7 +28,7 @@ export default function Questions() {
      const [life, setLife] = useState(3)
      const [error, setError] = useState(null)
      const { getQuestions, questions, setQuestions, postQuestions,setJokerQuestions, jokerQuestions } = useContext(AuthContext)
-
+     
      useEffect(() => {
           getQuestions()
      }, [])
@@ -45,7 +45,7 @@ export default function Questions() {
      }
 
      const handleQuestions = (isCorrect, e) => {
-
+     
           if (isCorrect === true) {
                setError(false)
                setPuntuacion(puntuacion + 1)
@@ -59,6 +59,12 @@ export default function Questions() {
           isCorrect === false && setLife(life - 1)
      }
      
+     const modalNextQuestions = ($error)=>{
+
+     }
+
+     
+
      const handleJoker = () => {
 
           if(jokerQuestions) {
@@ -96,8 +102,10 @@ export default function Questions() {
                               <div className={style.questions__list}>
                                    {
                                         questions?.preguntas[preguntaActual]?.opciones.map((item, index) => (
+
                                              <button disabled={!item.isCorrect && error != null} key={index} onClick={(e) => handleQuestions(item.isCorrect, e)} className='btn btn__rosa__dark'>{item.opciones}</button>
-                                        ))
+                                        
+                                             ))
                                    }
 
                               </div>
@@ -106,16 +114,27 @@ export default function Questions() {
                               {
                                    error === false && (
                                         <>
-                                             <h2>¡Correcto!</h2>
-                                             <p>Oprime siguiente y continua jugando</p>
+                                             <div className={style.question__nolayer}>
+                                             </div>
+                                             <div className={style.questions__modal} >
+                                                  <h2>¡Correcto!</h2>
+                                                  <p className={style.questions__p}>Oprime siguiente y continua jugando</p>
+                                                  <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
+
+                                             </div>
                                         </>
                                    )
                               }
                               {
                                    error === true && (
                                         <>
+                                        <div className={style.question__nolayer}>
+                                        </div>
+                                        <div className={style.questions__modal}>
                                              <h2>¡Fallaste!</h2>
-                                             <p>Oprime siguiente y continua jugando</p>
+                                             <p class='questions__p'>Oprime siguiente y continua jugando</p>
+                                             <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
+                                        </div>
                                         </>
                                    )
                               }
@@ -138,11 +157,11 @@ export default function Questions() {
                                         <p>{life}</p>
                                    </div>
                               </div>
-                              {
+                              {/* {
                                    error !== null
                                         ? <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
                                         : <button onClick={nextQuestios} className='btn btn__gris' disabled>SIGUIENTE</button>
-                              }
+                              } */}
                          </div>
                     </div>
                </div>

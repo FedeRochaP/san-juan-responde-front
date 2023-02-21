@@ -37,10 +37,9 @@ export default function Instructions() {
                                         <li>Lee la pregunta. </li>
                                         <li>Elije la respuesta que crees correcta.</li>
                                         <li>Espera ver tu resultado. </li>
-                                        <li>Si fallas puede volver a intentarlo, pero  perderás una vida. Las vidas restantes se indican con el corazón.</li>
+                                        <li>Si fallas puedes volver a intentarlo, pero  perderás una vida. Las vidas restantes se indican en el corazón.</li>
                                         <li>Tienes un comodín para utilizar, te ayudara a encontrar la respuesta correcta. </li>
-                                        <li>Finalizada la tanda de preguntas, puedes vovler a intentarlo en una nueva tanda, en total tienes 5 intentos</li>
-                                        <li>Solo pueden participar mayores de 18 años. </li>
+                                        <li>Finalizada la tanda de preguntas, puedes volver a intentarlo en una nueva tanda, en total tienes 5 intentos</li>
                                    </ol>
                               </div>
                          </div>
