@@ -37,7 +37,7 @@ export default function Congrats({ intentosFeliz , cantInt }) {
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
      const navigate = useNavigate()
-     const { questions } = React.useContext(AuthContext)
+     const { postWin } = React.useContext(AuthContext)
      const handleClick = () => {
           intentosFeliz === cantInt ? window.location.href = '/'   : navigate('/instructions')
      }
@@ -71,9 +71,9 @@ export default function Congrats({ intentosFeliz , cantInt }) {
                               </div>
                               <div className={style.message__congrats__title}>
                                    <h2>¡Felicitaciones!</h2>
-                                   <h3>¡Ganaste!</h3>
-                                   <br />
                                    <h4>Ya formas parte del sorteo </h4>
+                                   <br />
+                                   <h3>N° : {postWin?.idInscripcion}</h3>
                               </div>
                               <div className={style.message__attempts}>
                                    <h2>Intentos  {intentosFeliz}/{cantInt}</h2>

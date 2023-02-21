@@ -59,9 +59,9 @@ export default function Questions() {
           isCorrect === false && setLife(life - 1)
      }
      
-     const modalNextQuestions = ($error)=>{
+     // const modalNextQuestions = ($error)=>{
 
-     }
+     // }
 
      
 
