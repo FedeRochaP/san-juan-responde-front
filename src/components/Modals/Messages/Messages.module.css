@@ -29,6 +29,7 @@
      left: 10px;
      border-radius: 5px;
      align-self: flex-start;
+     cursor: pointer;
 }
 
 .message__icons {
