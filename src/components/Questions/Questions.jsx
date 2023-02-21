@@ -27,8 +27,8 @@ export default function Questions() {
      const [isFinished, setIsFinished] = useState(false)
      const [life, setLife] = useState(3)
      const [error, setError] = useState(null)
-     const { getQuestions, questions, setQuestions, postQuestions,setJokerQuestions, jokerQuestions } = useContext(AuthContext)
-     
+     const { getQuestions, questions, setQuestions, postQuestions, setJokerQuestions, jokerQuestions } = useContext(AuthContext)
+
      useEffect(() => {
           getQuestions()
      }, [])
@@ -41,11 +41,11 @@ export default function Questions() {
                setPreguntaActual(preguntaActual + 1)
                setError(null)
           }
-          
+
      }
 
      const handleQuestions = (isCorrect, e) => {
-     
+
           if (isCorrect === true) {
                setError(false)
                setPuntuacion(puntuacion + 1)
@@ -58,16 +58,16 @@ export default function Questions() {
           }
           isCorrect === false && setLife(life - 1)
      }
-     
+
      // const modalNextQuestions = ($error)=>{
 
      // }
 
-     
+
 
      const handleJoker = () => {
 
-          if(jokerQuestions) {
+          if (jokerQuestions) {
                const questionsArray = { ...questions }
                const valor = questions?.preguntas[preguntaActual]?.opciones?.findIndex(item => {
                     return item.isCorrect === false
@@ -78,7 +78,7 @@ export default function Questions() {
           }
      }
 
-     
+
      return (
           <div className='view'>
                <Header />
@@ -104,8 +104,8 @@ export default function Questions() {
                                         questions?.preguntas[preguntaActual]?.opciones.map((item, index) => (
 
                                              <button disabled={!item.isCorrect && error != null} key={index} onClick={(e) => handleQuestions(item.isCorrect, e)} className='btn btn__rosa__dark'>{item.opciones}</button>
-                                        
-                                             ))
+
+                                        ))
                                    }
 
                               </div>
@@ -116,11 +116,12 @@ export default function Questions() {
                                         <>
                                              <div className={style.question__nolayer}>
                                              </div>
-                                             <div className={style.questions__modal} >
-                                                  <h2>¡Correcto!</h2>
-                                                  <p className={style.questions__p}>Oprime siguiente y continua jugando</p>
-                                                  <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
-
+                                             <div className={style.questions__modal__container}>
+                                                  <div className={style.questions__modal} >
+                                                       <h2>¡Correcto!</h2>
+                                                       <p>Oprime siguiente y continua jugando</p>
+                                                       <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
+                                                  </div>
                                              </div>
                                         </>
                                    )
@@ -128,23 +129,25 @@ export default function Questions() {
                               {
                                    error === true && (
                                         <>
-                                        <div className={style.question__nolayer}>
-                                        </div>
-                                        <div className={style.questions__modal}>
-                                             <h2>¡Fallaste!</h2>
-                                             <p class='questions__p'>Oprime siguiente y continua jugando</p>
-                                             <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
-                                        </div>
+                                             <div className={style.question__nolayer}>
+                                             </div>
+                                             <div className={style.questions__modal__container}>
+                                                  <div className={style.questions__modal}>
+                                                       <h2>¡Fallaste!</h2>
+                                                       <p>Oprime siguiente y continua jugando</p>
+                                                       <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
+                                                  </div>
+                                             </div>
                                         </>
                                    )
                               }
                          </div>
 
                          {life === 0 && <Ups intentos={questions?.intentos} cantInt={questions?.cantIntentosPosibles} />}
-                         {isFinished===true && <Congrats intentosFeliz={questions?.intentos} cantInt={questions?.cantIntentosPosibles} />}
+                         {isFinished === true && <Congrats intentosFeliz={questions?.intentos} cantInt={questions?.cantIntentosPosibles} />}
                          <div className={style.questions__next}>
                               <div className={style.questions__btns}>
-                                   {questions?.preguntas[preguntaActual].opciones?.length === 3 && jokerQuestions===true
+                                   {questions?.preguntas[preguntaActual].opciones?.length === 3 && jokerQuestions === true
                                         ? <div onClick={handleJoker} className={style.questions__joker}>
                                              <img src={joker} alt="Comodín" />
                                         </div>

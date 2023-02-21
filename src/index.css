@@ -111,7 +111,6 @@
 
 .questions__message {
      width: 100%;
-     height: 67px !important;
      color: var(--bordo-dark);
      padding: 0 20px;
      display: flex;
@@ -121,7 +120,7 @@
 }
 
 .questions__message h2 {
-     font-size: 25px;
+     font-size: 30px;
 }
 
 .questions__message p {
