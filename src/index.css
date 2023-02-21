@@ -50,7 +50,7 @@
 .container__user {
      width: 100%;
      max-width: 900px;
-     min-height: 95vh;
+     min-height: 85vh;
      padding: 15px 20px;
      display: flex;
      flex-direction: column;
@@ -111,23 +111,23 @@
 
 .questions__message {
      width: 100%;
-     height: 90px !important;
+     height: 67px !important;
      color: var(--bordo-dark);
      padding: 0 20px;
      display: flex;
      flex-direction: column;
      align-items: center;
-     gap: 15px;
+     gap: 10px;
 }
 
 .questions__message h2 {
-     font-size: 30px;
+     font-size: 25px;
 }
 
 .questions__message p {
      max-width: 250px;
      font-family: brokman-light;
-     font-size: 20px;
+     font-size: 16px;
 }
 
 .questions__message h3 {
