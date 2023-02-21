@@ -77,7 +77,7 @@ export default function Form() {
      }
 
      const formSubmit = async()=> {
-          await axios.post(`http://ec2-54-227-90-142.compute-1.amazonaws.com/api/participante`, {
+          await axios.post(`http://ec2-52-22-149-124.compute-1.amazonaws.com/api/participante`, {
                "nombre": form?.nombre,
                "apellido": form?.apellido,
                "telefono": form?.telefono,
