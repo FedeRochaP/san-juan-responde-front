@@ -50,7 +50,7 @@
 .container__user {
      width: 100%;
      max-width: 900px;
-     min-height: 85vh;
+     min-height: 78vh;
      padding: 15px 20px;
      display: flex;
      flex-direction: column;
