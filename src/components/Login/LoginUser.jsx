@@ -53,7 +53,7 @@ export default function LoginUser() {
                     <Logos />
                     <div className={style.login__title}>
                          <h2>Bienvenidos</h2>
-                         <p>Ingresa tu DNI y comenzemos con el juego </p>
+                         <p>Ingresa tu DNI y comencemos con el juego </p>
                     </div>
                     <div className={style.login__inputs}>
                          <div className={style.login__inputbox}>
