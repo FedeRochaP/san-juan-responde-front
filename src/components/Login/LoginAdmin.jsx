@@ -24,7 +24,7 @@ export default function LoginAdmin() {
                })
                .then((response) => {
                     setPost(response.data);
-                    console.log(response.data + 'Ahora si wacho')
+                    // console.log(response.data + 'Ahora si wacho')
                     navigate(`/panelAdmin`)
                });
      }
@@ -40,7 +40,7 @@ export default function LoginAdmin() {
               .then(datos => {
               })
               .catch((err) => {
-                  console.log(err)
+               //    console.log(err)
               })
       }, [])
 

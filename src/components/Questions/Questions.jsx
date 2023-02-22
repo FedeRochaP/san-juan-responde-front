@@ -28,6 +28,7 @@ export default function Questions() {
      const [life, setLife] = useState(3)
      const [error, setError] = useState(null)
      const { getQuestions, questions, setQuestions, postQuestions, setJokerQuestions, jokerQuestions } = useContext(AuthContext)
+     const [correcta, setCorrecta] = useState()
 
      useEffect(() => {
           getQuestions()
@@ -54,16 +55,14 @@ export default function Questions() {
                     postQuestions()
                }
           } else {
+               let verdadera = questions?.preguntas[preguntaActual]?.opciones?.find(item => {
+                    return item.isCorrect == true
+               })
+               setCorrecta(verdadera)
                setError(true)
           }
           isCorrect === false && setLife(life - 1)
      }
-
-     // const modalNextQuestions = ($error)=>{
-
-     // }
-
-
 
      const handleJoker = () => {
 
@@ -77,7 +76,6 @@ export default function Questions() {
                setJokerQuestions(false)
           }
      }
-
 
      return (
           <div className='view'>
@@ -134,6 +132,8 @@ export default function Questions() {
                                              <div className={style.questions__modal__container}>
                                                   <div className={style.questions__modal}>
                                                        <h2>¡Fallaste!</h2>
+                                                       <p>La respuesta correcta es:</p>
+                                                       <h3>{correcta?.opciones}</h3>
                                                        <p>Oprime siguiente y continua jugando</p>
                                                        <button onClick={nextQuestios} className='btn btn__bordo'>SIGUIENTE</button>
                                                   </div>

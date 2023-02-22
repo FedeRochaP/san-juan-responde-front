@@ -77,7 +77,7 @@ export default function Form() {
      }
 
      const formSubmit = async()=> {
-          await axios.post(`http://expansionproductrivia.com.ar/api/participante`, {
+          await axios.post(`https://expansionproductrivia.com.ar/api/participante`, {
                "nombre": form?.nombre,
                "apellido": form?.apellido,
                "telefono": form?.telefono,
@@ -99,7 +99,7 @@ export default function Form() {
                })
                .catch((err) => {
                     
-                    console.log('hola')
+                    // console.log('hola')
                })
      }
      const onValidate = ()=> {
@@ -202,7 +202,7 @@ export default function Form() {
                          <br /><br />
                          <div className={style.form__btn}>
                               <img src={expansion} alt="" />
-                              <button className='btn btn__gris' onClick={handleSubmitForm}>GUARDAR</button>
+                              <button className='btn btn__bordo' onClick={handleSubmitForm}>GUARDAR</button>
                          </div>
                     </div>
 

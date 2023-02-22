@@ -14,7 +14,7 @@ export const UserContext = ({ children }) => {
 
 
     const handleLogin = async ({ dni }) => {
-        await axios.post(`http://expansionproductrivia.com.ar/api/participante/consulta`, {
+        await axios.post(`https://expansionproductrivia.com.ar/api/participante/consulta`, {
             "dni": dni
         }, {
             method: 'POST',
@@ -29,13 +29,13 @@ export const UserContext = ({ children }) => {
             })
             .catch((err) => {
                 window.sessionStorage.removeItem('token')
-                console.log(err)
+                // console.log(err)
             })
     }
 
 
     const getQuestions = async () => {
-        await axios.post(`http://expansionproductrivia.com.ar/api/getPreguntas`, {
+        await axios.post(`https://expansionproductrivia.com.ar/api/getPreguntas`, {
             "dni": respuesta?.dni
         }, {
             method: 'POST',
@@ -57,7 +57,7 @@ export const UserContext = ({ children }) => {
                 }
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
             })
     }
     useEffect(() => {
@@ -68,7 +68,7 @@ export const UserContext = ({ children }) => {
     //     window.sessionStorage.setItem('user', user)
     // }, [user])
     const postQuestions = async () => {
-        await axios.post(`http://expansionproductrivia.com.ar/api/intentos/guardar`, {
+        await axios.post(`https://expansionproductrivia.com.ar/api/intentos/guardar`, {
             "preguntas_correctas": 3
         }, {
             method: 'POST',
@@ -83,12 +83,12 @@ export const UserContext = ({ children }) => {
             .then(response => response.data)
             .then(async (datos) => {
                 if (datos?.status) {
-                    console.log(datos)
+                    // console.log(datos)
                     setPostWin(datos)
                 }
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
             })
     }
     return (
